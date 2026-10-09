@@ -1,10 +1,31 @@
-# ASR Evaluation — دليل التشغيل (Windows)
+# ASR Evaluation — تقييم نماذج تحويل الصوت إلى نص
 
-تطبيق محلي لمقارنة نصوص تحويل الكلام إلى كتابة باستخدام WER وCER وتحليل الاستبدال والحذف والإضافة.
+أداة محلية لتقييم مخرجات **ASR** باستخدام **Word Error Rate (WER)** و**Character Error Rate (CER)** وتحليل أخطاء الحذف والإضافة والاستبدال، مع مقارنات عادلة على الحالات المشتركة.
 
-## تشغيل المشروع لأول مرة
+[English README](README.md) · [دليل التشغيل لويندوز](docs/WINDOWS_SETUP.md) · [هندسة المشروع](docs/ARCHITECTURE.md) · [التحقق والاختبارات](docs/portfolio/VERIFICATION.md)
 
-افتح **PowerShell عادي** (لا تبدأ من `C:\Windows\System32`) ثم نفّذ:
+## الفكرة
+
+ارتفاع دقة نموذج تحويل الصوت إلى نص لا يُثبت بمجرد مقارنة رقمين. التقييم الصحيح يحتاج **نفس التسجيل**، و**نصًا مرجعيًا تمت مراجعته**، و**سياسة تنظيف موحّدة**، وفصل الفشل التقني عن أخطاء التفريغ.
+
+المشروع أداة **لتقييم نماذج ASR**، وليس نموذج ذكاء اصطناعي دُرّب من الصفر، ولا أداة للتحقق من جودة التشخيص الطبي.
+
+## الإمكانيات
+
+| الجزء | ماذا ينفّذ المشروع؟ |
+|---|---|
+| مصادر الصوت | رفع ملفات، روابط YouTube، دفعات JSON |
+| تكامل النماذج | HUMAIN Voice وElevenLabs Scribe v2 |
+| التقييم النصي | مقارنة نصوص جاهزة دون استدعاء API |
+| المقاييس | WER وCER، ومحاذاة الأخطاء ومواقعها |
+| تجهيز النص | Cleaning / No cleaning، وقواعد تطبيع للنص العربي |
+| مقارنة النماذج | نفس المدخلات والمراجع، متوسط النتائج، ومقاييس Corpus |
+| التتبع | حفظ النتائج، التمييز بين `live` و`supplied`، ومراجعة المرجع وإعادة التقييم |
+| التصدير | HTML وJSON وCSV |
+
+## تشغيل سريع على Windows
+
+بعد تثبيت Git وPython 3.12، افتح PowerShell:
 
 ```powershell
 cd "$env:USERPROFILE\Documents"
@@ -14,78 +35,39 @@ cd .\ASR-Evaluation
 .\START_WINDOWS.bat
 ```
 
-يفتح التطبيق على <http://127.0.0.1:5000>. سكربت الإعداد ينشئ `.venv` ويثبت Flask وWaitress وHUMAIN SDK و`yt-dlp[default]` وبقية مكتبات Python؛ **لا تحتاج تفعيل البيئة بنفسك**. ملف البدء يستخدم Python الموجود داخل `.venv`.
+افتح <http://127.0.0.1:5000>. سكربت الإعداد ينشئ بيئة Python محلية `.venv`.
 
-## تحديث نسخة موجودة
-
-إذا كان اسم النسخة التجريبية عندك `ASR-Evaluation-Test`:
-
-```powershell
-cd "$env:USERPROFILE\Documents\ASR-Evaluation-Test"
-git pull --ff-only
-.\SETUP_WINDOWS.bat
-.\START_WINDOWS.bat
-```
-
-لا تثبّت المكتبات باستخدام `python` العام من مجلد آخر. وللتشغيل اليدوي استخدم:
-
-```powershell
-.\.venv\Scripts\python.exe run_local.py
-```
-
-## التجربة بالصوت وYouTube
-
-**إذا تعطّل winget** وظهر الخطأ `0x80073cfc` أو `Failed when searching source: winget`، فالمشروع يحتوي مثبتًا بديلًا:
+إذا تبي تجربة صوت فعلية، ثبّت FFmpeg وFFprobe وDeno باستخدام مثبت المشروع الذي لا يعتمد على winget:
 
 ```powershell
 .\INSTALL_MEDIA_WINDOWS.bat
+.\START_WINDOWS.bat
 ```
 
-يثبّت FFmpeg وFFprobe وDeno داخل مجلد `.tools/` في المشروع فقط، ويتأكد من بصمات SHA-256 المنشورة للأدوات من [FFmpeg Builds](https://www.gyan.dev/ffmpeg/builds/) و[إصدارات Deno](https://github.com/denoland/deno/releases). لا يحتاج winget ولا صلاحية مسؤول ولا تعديل PATH العام، ويتعرف عليه `START_WINDOWS.bat` تلقائيًا. يمكنك مراجعة `INSTALL_MEDIA_WINDOWS.ps1` قبل التنفيذ.
+جميع تفاصيل التحديث، واستكشاف مشكلات `waitress` و`yt-dlp` و`winget`، وفحص التثبيت موجودة في **[الدليل التفصيلي](docs/WINDOWS_SETUP.md)**.
 
-وإذا تبي تصلح winget على Windows 11:
+## كيف تجرب المشروع؟
 
-```powershell
-Get-AppxPackage Microsoft.DesktopAppInstaller | Reset-AppxPackage
-winget source update
+**للاطلاع على المثال بدون API:** افتح **New evaluation → Saved text demo → View sample results**. هذا يستخدم نصوص تفريغ محفوظة فقط، وليس طلبًا حقيقيًا للنماذج. **النموذج الأول في المثال القديم مجهول الهوية وليس HUMAIN**. ملف الصوت الأصلي غير موزّع ضمن مستودع GitHub العام.
+
+**للتقييم الحقيقي:** اختر **Upload** أو **YouTube URL**، وضع Ground Truth مطابقًا لنفس التسجيل، ثم اختر **HUMAIN / ElevenLabs** وأدخل مفاتيحك من **Model connections** وأكّد الموافقة على إرسال الصوت. يحتاج HUMAIN إلى Endpoint صالح لحسابك. قد تُحتسب تكاليف من مزودي API.
+
+## منهجية القياس
+
+```text
+WER = (S + D + I) / عدد كلمات النص المرجعي
+CER = عدد تعديلات الحروف / عدد حروف النص المرجعي
 ```
 
-- **رفع صوت / تشغيل API فعلي:** يلزم FFmpeg وFFprobe، وثبتهما عبر `winget install -e --id Gyan.FFmpeg`.
-- **رابط YouTube:** `yt-dlp` يُثبّت تلقائيًا ضمن مكتبات المشروع. ثبّت Deno (موصى به) بالأمر `winget install -e --id DenoLand.Deno`.
-- أغلق PowerShell وافتحه مجددًا بعد تثبيت FFmpeg أو Deno عبر winget. لا تحتاج إعادة فتحه عند استخدام المثبت المحلي.
+- **Cleaning** يطبّق قواعد التنظيف المعلنة على النص المرجعي والنتيجة معًا، ولا يغيّر المخرجات الأصلية المحفوظة.
+- **Average** متوسط بسيط للحالات؛ **Corpus** يقسم مجموع الأخطاء على مجموع كلمات أو حروف المرجع.
+- المقارنة الثنائية تحسب الحالات المشتركة الناجحة وفق إعدادات متوافقة؛ الفشل ليس دقة 100% أو WER = 0%.
+- WER/CER لا يقيسان سلامة المعنى أو جودة قرار طبي.
 
-فحص سريع بعد استخدام المثبت المحلي:
+## مستوى التحقق الفعلي
 
-```powershell
-.\.tools\ffmpeg\ffmpeg.exe -version
-.\.tools\ffmpeg\ffprobe.exe -version
-.\.tools\deno\deno.exe --version
-.\.venv\Scripts\python.exe -m yt_dlp --version
-.\.venv\Scripts\python.exe diagnose.py
-```
+يوجد **اختبار تثبيت Windows باستخدام GitHub Actions**، واختبارات تقييم وحفظ نتائج، ومحاكاة طلبات API بدون استخدام أرصدة حقيقية. **لم تثبت الاختبارات الآلية جودة HUMAIN أو ElevenLabs الفعلية أو نجاح حسابات API الخاصة بالزوار.** التفاصيل ونتائج الاختبارات التاريخية موثقة في [ملف التحقق](docs/portfolio/VERIFICATION.md).
 
-إذا ثبّت الأدوات باستخدام winget بدل المثبت المحلي، استخدم الأوامر العامة `ffmpeg -version` و`ffprobe -version` و`deno --version` بعد فتح PowerShell من جديد.
+المشروع مخصص للتجربة التقنية المحلية، ولا ينبغي نشر مفاتيح API أو بيانات المرضى أو نتائج العملاء. راجع [سياسة الخصوصية والأمان](SECURITY.md) و[مصدر البيانات والنتائج](docs/portfolio/DATA_AND_PROVENANCE.md).
 
-قد ترفض YouTube بعض المقاطع؛ ارفع ملفًا صوتيًا من جهازك بدلًا منها.
-
-## لا تخلط النتائج التجريبية مع API
-
-**View sample results / Supplied transcripts** تقارن نصوصًا محفوظة فقط، **بدون** استدعاء API. النموذج الأول في المثال القديم غير معروف المصدر، ولا يجوز نسبه إلى HUMAIN. ملف الصوت الأصلي للعينة غير موجود في نسخة GitHub العامة.
-
-للمقارنة الحقيقية: **New evaluation → Upload أو YouTube URL → Ground Truth → HUMAIN / ElevenLabs → Model connections**. أدخل مفاتيحك في الواجهة، ورابط حساب HUMAIN الصحيح، وألغِ تفعيل **Use supplied transcripts** ووافق على إرسال الصوت. قد تستهلك الطلبات رصيد API. لا ترسل المفاتيح لأحد ولا ترفعها إلى GitHub.
-
-## حلول المشاكل التي واجهتنا
-
-| المشكلة | الحل |
-|---|---|
-| `Permission denied` عند `git clone` | انتقل إلى مجلد Documents بدل `C:\Windows\System32` |
-| `No module named waitress` | `SETUP_WINDOWS.bat` ثم شغل باستخدام `.venv\Scripts\python.exe` |
-| `yt-dlp was not found` | `git pull` ثم `SETUP_WINDOWS.bat`؛ المكتبة صارت ضمن المتطلبات |
-| `winget` يفشل بـ `0x80073cfc` | شغّل `INSTALL_MEDIA_WINDOWS.bat` بدون winget، أو أعد ضبط App Installer |
-| فشل تجهيز الصوت | شغّل `INSTALL_MEDIA_WINDOWS.bat` لتهيئة FFmpeg وFFprobe داخل المشروع |
-| `Incomplete application files` | تأكد من تحديث نسخة Git نظيفة؛ ملف `.gitattributes` يمنع تغيير نهايات أسطر الواجهة |
-| نتائج `supplied` تظهر في المقارنة | هذه بيانات محفوظة وليست تشغيلًا فعليًا للمزود |
-
-التحقق من الواجهة عبر `/api/build` أو `verify_ui_files`؛ الأمر `python verify_package.py` يفحص الآن ملفات تشغيل GitHub وبصمات الواجهة الحالية. خيار `--full-release` فقط لفحص أرشيف ZIP الأصلي المختلف عن النسخة العامة.
-
-[English README](README.md) · [بنية النظام](docs/ARCHITECTURE.md) · [إعدادات الربط](docs/portfolio/CONFIGURATION.md)
+**لمزيد من تفاصيل التطبيق والكود:** [README الإنجليزي](README.md) · [المعمارية](docs/ARCHITECTURE.md) · [إعداد النماذج](docs/portfolio/CONFIGURATION.md).
