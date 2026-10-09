@@ -46,6 +46,12 @@ jobs:
         shell: pwsh
         run: |
           .\.venv\Scripts\python.exe run_tests.py
+      - name: Audit every tracked file and frontend script syntax
+        shell: pwsh
+        run: |
+          .\.venv\Scripts\python.exe tools/repo_audit.py
+          node --check static/js/app.js
+          node --check static/js/charts.js
       - name: Offline setup regression tests and UI integrity
         shell: pwsh
         run: |
