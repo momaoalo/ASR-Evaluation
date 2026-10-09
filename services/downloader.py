@@ -1,10 +1,12 @@
 """YouTube acquisition through the installed yt-dlp CLI, never a web converter."""
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs
+import importlib.util
 import json
 import re
 import shutil
 import subprocess
+import sys
 from storage import digest
 
 
@@ -30,11 +32,20 @@ def canonical_youtube_url(url: str) -> str:
     return 'https://www.youtube.com/watch?v=' + video
 
 
+def yt_dlp_command() -> list[str] | None:
+    """Prefer yt-dlp in the running venv, not an unrelated system executable."""
+    if importlib.util.find_spec('yt_dlp') is not None:
+        return [sys.executable, '-m', 'yt_dlp']
+    tool = shutil.which('yt-dlp')
+    return [tool] if tool else None
+
+
+def yt_dlp_available() -> bool:
+    return yt_dlp_command() is not None
+
+
 def download_audio(url: str, settings) -> tuple[Path, dict]:
     url = canonical_youtube_url(url)
-    tool = shutil.which('yt-dlp')
-    if not tool:
-        raise ValueError('yt-dlp was not found. Install it or choose a local audio file.')
     directory = settings.data / 'audio' / ('youtube_' + digest(url)[:16])
     directory.mkdir(parents=True, exist_ok=True)
     cache = directory / 'source.json'
@@ -43,7 +54,10 @@ def download_audio(url: str, settings) -> tuple[Path, dict]:
         candidate = directory / metadata['filename']
         if candidate.is_file():
             return candidate, metadata
-    command = [tool, '--ignore-config', '--no-playlist', '--no-progress', '--no-warnings',
+    tool = yt_dlp_command()
+    if not tool:
+        raise ValueError('yt-dlp is missing. Run SETUP_WINDOWS.bat or install yt-dlp[default] in the active Python environment. Alternatively, upload an audio file.')
+    command = [*tool, '--ignore-config', '--no-playlist', '--no-progress', '--no-warnings',
                '--socket-timeout', '20', '--retries', '1', '--no-overwrites',
                '--max-filesize', str(settings.max_upload_mb) + 'M',
                '--match-filter', 'duration <= 7200', '-f', 'bestaudio/best',
@@ -56,8 +70,8 @@ def download_audio(url: str, settings) -> tuple[Path, dict]:
     if result.returncode:
         reason = result.stderr.lower()
         if 'sign in' in reason or 'bot' in reason or 'cookies' in reason:
-            raise ValueError('YouTube requires browser authentication for this request. No bypass is attempted; use the bundled sample or upload a downloaded audio file.')
-        raise ValueError('YouTube acquisition failed. The video may be restricted, unavailable, too large, or blocked by the network.')
+            raise ValueError('YouTube requires browser authentication for this request. No bypass is attempted; upload a local audio file instead.')
+        raise ValueError('YouTube acquisition failed. Check that the video is available. Deno 2.3+ is recommended for YouTube support; run diagnostics or upload a local audio file.')
     paths = [Path(s.strip()) for s in result.stdout.splitlines() if s.strip()]
     candidates = [p for p in paths if p.is_file() and p.resolve().parent == directory.resolve()]
     if not candidates:
