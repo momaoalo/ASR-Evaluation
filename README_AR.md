@@ -68,6 +68,6 @@ deno --version
 | `Incomplete application files` | تأكد من تحديث نسخة Git نظيفة؛ ملف `.gitattributes` يمنع تغيير نهايات أسطر الواجهة |
 | نتائج `supplied` تظهر في المقارنة | هذه بيانات محفوظة وليست تشغيلًا فعليًا للمزود |
 
-التحقق من الواجهة عبر `/api/build` أو `verify_ui_files`؛ أداة `verify_package.py` مخصصة للتحقق من نسخة ZIP قديمة ببصمات مختلفة وليست مناسبة لاختبار GitHub بعد التحديثات.
+التحقق من الواجهة عبر `/api/build` أو `verify_ui_files`؛ الأمر `python verify_package.py` يفحص الآن ملفات تشغيل GitHub وبصمات الواجهة الحالية. خيار `--full-release` فقط لفحص أرشيف ZIP الأصلي المختلف عن النسخة العامة.
 
 [English README](README.md) · [بنية النظام](docs/ARCHITECTURE.md) · [إعدادات الربط](docs/portfolio/CONFIGURATION.md)
