@@ -34,7 +34,7 @@ winget install -e --id Gyan.FFmpeg
 winget install -e --id DenoLand.Deno
 ```
 
-- **FFmpeg and FFprobe** are required to prepare all live audio.
+- **FFmpeg and FFprobe** are required to prepare all live audio. If WinGet is broken, run `INSTALL_MEDIA_WINDOWS.bat`; this installs official checksum-verified FFmpeg/FFprobe and Deno in the ignored project-local `.tools/` folder. `START_WINDOWS.bat` adds that location to the process PATH.
 - **yt-dlp** runs from the same Python environment as the app; no separate global executable is needed.
 - **Deno 2.3+** is recommended for YouTube JavaScript challenges; some videos can still be restricted.
 - The app is single-user and loopback-only. Do not expose it to the public internet.
