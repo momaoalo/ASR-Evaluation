@@ -2,7 +2,7 @@
   "build": "dashboard-1.6.2",
   "files": {
     "templates/index.html": "37061174471756c16c844a6a2d09858b0eb6ef2954240caa6444656dd37d292e",
-    "templates/_workspace.html": "3a8e0d89971226426d0b0d772f22fe5c81309067cb036ca6698e47b8967551b0",
+    "templates/_workspace.html": "309eca8a70bf3a51872312586d2eb65089fd4387e72d5b01cadcb5fce324b80b",
     "static/js/app.js": "e1a9f59e86b3b9944319c09080312aa5261393b912f87c4807e96c1b684d3cc8",
     "static/js/charts.js": "76e611b71483cd9eb2b08399e7686ee72f7952a56934a19df0fb2653880b60b9",
     "static/css/app.css": "07f7abed3b94949d92ee6180839e9f055ccdf16e84eb3208539dad95af5718f5"
