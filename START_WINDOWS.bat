@@ -1,6 +1,8 @@
 @echo off
 setlocal
 cd /d "%~dp0"
+rem Portable FFmpeg/Deno: never change global system PATH.
+set "PATH=%~dp0.tools\ffmpeg;%~dp0.tools\deno;%PATH%"
 if not exist ".venv\Scripts\python.exe" (
   echo No project environment found. Starting setup...
   call "%~dp0SETUP_WINDOWS.bat"
