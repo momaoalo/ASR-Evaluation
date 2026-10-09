@@ -1,0 +1,36 @@
+name: Import verified source package
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".source-import/READY"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: source-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Verify and expand the prepared source package
+        run: python3 .source-import/restore.py
+      - name: Commit the verified source files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Source package is already restored."
+            exit 0
+          fi
+          git commit -m "feat: restore ASR Evaluation source package"
+          git push origin HEAD:main
