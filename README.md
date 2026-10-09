@@ -91,6 +91,16 @@ Open <http://127.0.0.1:5000> (the launcher also attempts to open your browser). 
 
 ### Extra tools for real audio and YouTube
 
+**WinGet alternative (including error `0x80073cfc`):** run the included portable media installer instead of WinGet:
+
+```powershell
+.\INSTALL_MEDIA_WINDOWS.bat
+```
+
+This downloads the [FFmpeg Essentials Windows build](https://www.gyan.dev/ffmpeg/builds/) and [Deno's Windows release](https://github.com/denoland/deno/releases) from their official distributions, verifies published SHA-256 checksums, and installs them under the ignored project-local `.tools/` directory. No administrator privileges, global PATH changes, or separate package manager required. The project launcher finds these tools automatically. You can review `INSTALL_MEDIA_WINDOWS.ps1` before running it. To install FFmpeg without optional Deno, run `powershell -NoProfile -ExecutionPolicy Bypass -File .\INSTALL_MEDIA_WINDOWS.ps1 -SkipDeno`.
+
+If you want to repair WinGet on Windows 11, Microsoft's documented command is `Get-AppxPackage Microsoft.DesktopAppInstaller | Reset-AppxPackage`, followed by `winget source update`.
+
 Python packages alone are **not sufficient** to convert audio. For live ASR via Upload or YouTube, install **FFmpeg/FFprobe** using Windows Package Manager:
 
 ```powershell
