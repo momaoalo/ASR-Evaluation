@@ -25,6 +25,7 @@ from evaluation.overview import validate_filters
 from evaluation.dashboard import build_dashboard as build_overview
 from reporting_review import load_reviews, save_review, rescore_reference
 from ui_integrity import UI_BUILD, verify_ui_files, repair_page
+from services.downloader import yt_dlp_available
 
 
 def create_app(settings=None, start_worker=True):
@@ -85,7 +86,7 @@ def create_app(settings=None, start_worker=True):
             included_sample = None
         return render_template('index.html', asset_version=version,
             boot={'csrf': csrf, 'version': VERSION, 'ui_version': UI_BUILD,
-                  'sample': included_sample, 'offline': False,
+                  'sample': included_sample, 'sample_audio_present': (s.root / 'examples/doctor_clip.mp3').is_file(), 'offline': False,
                   'normalization': profile_catalog()})
 
     @app.get('/api/build')
@@ -102,7 +103,7 @@ def create_app(settings=None, start_worker=True):
     def health():
         c = s.credentials()
         return jsonify(version=VERSION, local_only=True,
-            tools={name: bool(shutil.which(name)) for name in ('ffmpeg', 'ffprobe', 'yt-dlp', 'deno')},
+            tools={**{name: bool(shutil.which(name)) for name in ('ffmpeg', 'ffprobe', 'deno')}, 'yt-dlp': yt_dlp_available()},
             packages={name: bool(importlib.util.find_spec(module)) for name, module in [('jiwer','jiwer'), ('humain-voice','humain_voice')]},
             providers={'elevenlabs': bool(c.get('elevenlabs_api_key')),
                        'humain': bool(c.get('humain_api_key') and c.get('humain_api_url'))})
