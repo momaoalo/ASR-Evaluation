@@ -35,9 +35,24 @@ git pull --ff-only
 
 ## التجربة بالصوت وYouTube
 
+**إذا تعطّل winget** وظهر الخطأ `0x80073cfc` أو `Failed when searching source: winget`، فالمشروع يحتوي مثبتًا بديلًا:
+
+```powershell
+.\INSTALL_MEDIA_WINDOWS.bat
+```
+
+يثبّت FFmpeg وFFprobe وDeno داخل مجلد `.tools/` في المشروع فقط، ويتأكد من بصمات SHA-256 المنشورة للأدوات من [FFmpeg Builds](https://www.gyan.dev/ffmpeg/builds/) و[إصدارات Deno](https://github.com/denoland/deno/releases). لا يحتاج winget ولا صلاحية مسؤول ولا تعديل PATH العام، ويتعرف عليه `START_WINDOWS.bat` تلقائيًا. يمكنك مراجعة `INSTALL_MEDIA_WINDOWS.ps1` قبل التنفيذ.
+
+وإذا تبي تصلح winget على Windows 11:
+
+```powershell
+Get-AppxPackage Microsoft.DesktopAppInstaller | Reset-AppxPackage
+winget source update
+```
+
 - **رفع صوت / تشغيل API فعلي:** يلزم FFmpeg وFFprobe، وثبتهما عبر `winget install -e --id Gyan.FFmpeg`.
 - **رابط YouTube:** `yt-dlp` يُثبّت تلقائيًا ضمن مكتبات المشروع. ثبّت Deno (موصى به) بالأمر `winget install -e --id DenoLand.Deno`.
-- أغلق PowerShell وافتحه مجددًا بعد تثبيت FFmpeg أو Deno.
+- أغلق PowerShell وافتحه مجددًا بعد تثبيت FFmpeg أو Deno عبر winget. لا تحتاج إعادة فتحه عند استخدام المثبت المحلي.
 
 فحص سريع:
 
@@ -64,7 +79,8 @@ deno --version
 | `Permission denied` عند `git clone` | انتقل إلى مجلد Documents بدل `C:\Windows\System32` |
 | `No module named waitress` | `SETUP_WINDOWS.bat` ثم شغل باستخدام `.venv\Scripts\python.exe` |
 | `yt-dlp was not found` | `git pull` ثم `SETUP_WINDOWS.bat`؛ المكتبة صارت ضمن المتطلبات |
-| فشل تجهيز الصوت | ثبّت FFmpeg وFFprobe وتأكد من تعرف النظام عليهما |
+| `winget` يفشل بـ `0x80073cfc` | شغّل `INSTALL_MEDIA_WINDOWS.bat` بدون winget، أو أعد ضبط App Installer |
+| فشل تجهيز الصوت | شغّل `INSTALL_MEDIA_WINDOWS.bat` لتهيئة FFmpeg وFFprobe داخل المشروع |
 | `Incomplete application files` | تأكد من تحديث نسخة Git نظيفة؛ ملف `.gitattributes` يمنع تغيير نهايات أسطر الواجهة |
 | نتائج `supplied` تظهر في المقارنة | هذه بيانات محفوظة وليست تشغيلًا فعليًا للمزود |
 
