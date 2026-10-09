@@ -50,6 +50,6 @@ Check readiness (no paid calls):
 
 ## Troubleshooting
 
-Refer to [README](../../README.md#checks-and-troubleshooting) or [Arabic quick start](../../README_AR.md). Missing `waitress` means you used the wrong Python or skipped setup. If YouTube acquisition fails, try Upload and check FFmpeg, Deno and video access. Use `python verify_package.py` to validate the **current Git checkout**, or `--full-release` only for the original historical ZIP archive.
+Refer to [Windows setup](../WINDOWS_SETUP.md) or [Arabic quick start](../../README_AR.md). Missing `waitress` means you used the wrong Python or skipped setup. If YouTube acquisition fails, try Upload and check FFmpeg, Deno and video access. Use `python verify_package.py` to validate the **current Git checkout**, or `--full-release` only for the original historical ZIP archive.
 
 No automatic retries should be assumed after a provider timeout: the service might already have processed a billable request. Live provider credentials, account authorization and billing remain untested in offline CI.
