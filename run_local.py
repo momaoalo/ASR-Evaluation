@@ -30,7 +30,10 @@ def main():
             webbrowser.open(URL)
             print('This application is already running. Keep its existing window open.'); return
         raise RuntimeError('A different ASR application is running on port 5000. Close it first.')
-    from waitress import serve
+    try:
+        from waitress import serve
+    except ImportError as exc:
+        raise RuntimeError('Python dependencies are missing. In PowerShell run: .\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt') from exc
     from app import create_app
     application = create_app()
     def open_when_ready():
