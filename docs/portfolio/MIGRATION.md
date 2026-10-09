@@ -1,62 +1,55 @@
-# Source migration and preservation
+# Repository history and source provenance
 
-## Recovered source
+This page records **historical source migration**. It is not a statement that the
+current public Git checkout remains byte-identical to the archived project.
 
-This repository packages the actual **ASR Evaluator Dashboard 1.6.2** application
-recovered from the owner's earlier ChatGPT-generated archive. It is not a newly
-implemented replacement for that application.
+## Source and ownership context
 
-```
+The owner's earlier **ASR Evaluator Dashboard 1.6.2** was recovered from an
+existing ChatGPT-generated delivery archive and imported into this repository.
+The application was not recreated as a toy WER calculator. Much of the underlying
+evaluation and reporting implementation originates from that earlier build.
+
+Historical archive metadata, recorded during the initial migration:
+
+```text
 Archive: ASR_Evaluator_Dashboard_1_6_2.zip
 SHA-256: e5099d514cf0119421d298d4c199f4ed685cabea5b761e9d753f2d1d63e40d8d
 Original archive entries: 104 files
 ```
 
-The original archive passed its supplied package checksum check before changes.
-`original-files.json` records the original hashes. The complete local delivery
-preserves **102 of the 104 original files byte-for-byte**, including all 49 original
-Python files, the templates, stylesheets, JavaScript, tests, and sample transcripts.
-A source-only clone omits one of those 102 files: the separately distributed MP3.
+See [original-files.json](original-files.json) for original inventory/hashes.
+That inventory is **historical evidence**, not a SHA-256 claim about today's
+source files.
 
-## Exactly what changed
+## Changes since import
 
-Two original packaging files changed:
+The GitHub version has **subsequently changed**: local Python setup, portable
+FFmpeg/Deno installation, optional UI-entered credentials, example labeling,
+UI checksums, Windows tests, source checks, and public documentation. The
+original packaging statement that source code was unchanged **no longer applies**.
 
-1. `.gitignore` now excludes the entire private runtime data directory and common
-   local secret/cache files. No runtime code changed.
-2. `package_manifest.json` contains the new `.gitignore` hash so the original
-   package verifier remains meaningful for the full delivery bundle.
+The Git history is the authoritative record of successive repairs. This is a
+portfolio representation of an existing application and ongoing engineering work,
+not an assertion that the current code was written entirely in one session.
 
-New English README, configuration, provenance, verification, security, and migration
-documentation were added. New source-verification and synthetic-demo helpers are
-separate from the application. Original Arabic legacy notes were retained rather
-than replacing reference text or silently rewriting the source.
+## Data and media constraints
 
-The additional synthetic English example is explicitly labeled, has no audio or
-real model predictions, and uses the original scoring/reporting implementation.
-Historical verification reports remain historical. Fresh evidence is under
-`verification/migration/`.
+The original sample's MP3 audio was kept outside this public repository because
+redistribution rights were not confirmed. A publicly accessible video link is
+attribution, not proof of permission to republish media. Synthetic demonstrations
+have their own explicit labels. Imported text is not reported as fresh provider
+inference; the earlier first sample's model identity remains unverified.
 
-## Media packaging
+The original package verifier can be invoked with
+`python verify_package.py --full-release` **only when the complete historical
+archive/fixture set is present**. For a current Git checkout use
+`python verify_package.py`, `/api/build`, and the CI workflow.
 
-The original `examples/doctor_clip.mp3` is retained in the full local delivery ZIP
-but is not redistributed in the public source repository. Its educational source
-is attributed; a public redistribution license was not established in this review.
-No replacement recording or invented audio checksum was introduced. See
-[Data and provenance](DATA_AND_PROVENANCE.md) for the expected original hash and
-which workflows/tests require it.
+## Evidence and limitations
 
-## Verification and limits
-
-```
-python tools/verify_source.py
-```
-
-This command validates the preserved original source and reports missing optional
-media separately. It does not test runtime dependencies, live APIs, or permissions
-to publish company-owned code. The original full-package verifier and test runner
-still require their original fixtures; neither was modified to hide missing media.
-
-No API keys, local settings, private result store, or development history were
-included. A scoped credential-pattern scan found no matches; that is not a guarantee
-of universal secrecy. No new license or company endorsement was added.
+See [current versus historical verification](VERIFICATION.md) and
+[data provenance](DATA_AND_PROVENANCE.md). Provider API keys, patient
+information, and private run recordings do not belong in the public repository.
+No provider authorization, successful paid inference, company endorsement, or
+licensing of third-party components is implied by the migration.
