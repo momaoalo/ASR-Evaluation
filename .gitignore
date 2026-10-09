@@ -22,3 +22,6 @@ Thumbs.db
 
 # Personal fresh test runs; curated migration evidence is tracked
 verification/local_test_results.json
+
+# Obsolete, incomplete archive-import staging (not part of application code)
+.source-import/

@@ -51,9 +51,11 @@ Reduced-motion preferences are respected by the new section-scroll controls.
 - jumpTo — section navigation and batch result focus.
 - templates/_workspace.html / static/css/app.css — layout, accessible disclosures.
 
-## Install into an existing workspace
+## Historical installation notes (archived original release)
 
-Stop the application. Extract this release outside C:\asr-evaluator, then run
+**These steps describe the older full ZIP release; do not follow them for a modern Git clone.** Use [Windows setup](WINDOWS_SETUP.md) instead.
+
+For historical context only: stop the original application. Extract the archived release outside C:\asr-evaluator, then run
 UPDATE_EXISTING.bat from the extracted asr-evaluator folder. Confirm the existing
 project path. The updater backs up code and preserves config.py, config.local.json,
 .env, and all of data/. Start START_WINDOWS.bat from the original project and refresh

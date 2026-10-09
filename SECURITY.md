@@ -11,7 +11,7 @@ not a security certification.
 - `data/`: recordings, uploads, raw provider responses, jobs, results, and caches.
 - Backups of local workspaces, credential-bearing diagnostics, and private exports.
 
-Use `.env` or the supported local settings file rather than committing keys.
+Enter keys in the local UI per-run, or use a local `.env` / `config.local.json` file. Never commit keys. The UI input is transient for each run; it is not an encrypted secrets vault.
 Local settings are plaintext, not an encrypted secret store. Do not share them.
 A successful secret-pattern scan does not prove that a repository contains no
 confidential information; review the intended publication contents separately.
