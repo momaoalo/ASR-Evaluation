@@ -1,23 +1,33 @@
-ASR Evaluator — UI 1.6.2
+ASR Evaluation — Windows / GitHub quick start
 
-للتركيب فوق مشروعك الحالي:
-1. أوقف التطبيق.
-2. استخرج ZIP خارج C:\asr-evaluator (مثل Downloads).
-3. من مجلد asr-evaluator المستخرج شغّل UPDATE_EXISTING.bat.
-4. أكّد C:\asr-evaluator وانتظر UPDATE COMPLETE - UI 1.6.2.
-5. شغّل START_WINDOWS.bat من مشروعك الأصلي ثم Ctrl+F5 في المتصفح.
+افتح PowerShell داخل Documents وليس C:\Windows\System32.
+لنسخة جديدة:
+  cd "$env:USERPROFILE\Documents"
+  git clone https://github.com/momaoalo/ASR-Evaluation.git
+  cd .\ASR-Evaluation
+  .\SETUP_WINDOWS.bat
+  .\START_WINDOWS.bat
 
-المحدّث يحافظ على المفاتيح والإعدادات ومجلد data ولا يعيد استدعاء النماذج.
-لا تنقل مجلدات قديمة فوق هذه النسخة. لا تحتاج إعادة الاستيراد.
+لتحديث نسخة GitHub موجودة:
+  git pull --ff-only
+  .\SETUP_WINDOWS.bat
+  .\START_WINDOWS.bat
 
-الجديد: متوسط WER/CER لكل نموذج وأعداد S/D/I على الحالات المشتركة،
-وبطاقات عدّ مختصرة ورسومات قابلة للطي وروابط تنقل سريعة.
-المتوسط الحسابي معروض باسم Average والنتيجة المرجّحة باسم Corpus.
-التقييم الجديد يفتح نتيجته عند اكتماله؛ الدفعة تفتح قائمة نتائجها.
-إذا فتحت نموذج إدخال أو حالة أخرى، يظهر زر View results دون مقاطعتك.
+السكربت ينشئ .venv ويثبت المتطلبات بما فيها waitress وyt-dlp.
+تحتاج FFmpeg وFFprobe لتجهيز الصوت؛ وثبت Deno لمزيد من دعم YouTube:
+  winget install -e --id Gyan.FFmpeg
+  winget install -e --id DenoLand.Deno
 
-للتثبيت لأول مرة فقط: SETUP_WINDOWS.bat ثم START_WINDOWS.bat.
-مكتبات Python موجودة عندك سابقًا على 3.12. استخدم START_WINDOWS.bat
-بدل تشغيل نسخة 3.14 التي لا تحتويها.
+افتح PowerShell جديد بعد التثبيت:
+  ffmpeg -version
+  ffprobe -version
+  deno --version
+  .\.venv\Scripts\python.exe -m yt_dlp --version
 
-تفاصيل الفحص وحدوده: verification/dashboard_v162/VERIFICATION.md
+ثم افتح http://127.0.0.1:5000
+
+العينة العامة تحتوي نصوص مقارنة محفوظة فقط، وليست HUMAIN API حقيقية.
+للتقييم الحقيقي ارفع صوتك وأدخل Ground Truth ومفاتيح API من Model connections.
+البرنامج محلي؛ لا تنشر مفاتيحك أو تسجيلات خاصة.
+
+اقرأ README_AR.md للتفاصيل وحلول المشكلات.
