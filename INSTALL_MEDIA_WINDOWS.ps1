@@ -67,9 +67,11 @@ try {
         }
     }
     Write-Host 'FFmpeg is ready:'
-    & $ffmpeg -version | Select-Object -First 1
+    $ffmpegInfo = & $ffmpeg -version
+    Write-Host $ffmpegInfo[0]
     Write-Host 'FFprobe is ready:'
-    & $ffprobe -version | Select-Object -First 1
+    $ffprobeInfo = & $ffprobe -version
+    Write-Host $ffprobeInfo[0]
 
     if (!$SkipDeno) {
         $denoDir = Join-Path $tools 'deno'
@@ -90,11 +92,13 @@ try {
             }
         }
         Write-Host 'Deno is ready:'
-        & $deno --version | Select-Object -First 1
+        $denoInfo = & $deno --version
+        Write-Host $denoInfo[0]
     }
     Write-Host ''
     Write-Host 'Media tools are ready within this project. No winget, admin privileges, or global PATH changes were used.'
     Write-Host 'Start the app with START_WINDOWS.bat, which automatically finds these tools.'
+    exit 0
 }
 catch {
     Write-Error ('Media tools setup failed: ' + $_.Exception.Message)
