@@ -31,3 +31,7 @@ ASR Evaluation — Windows / GitHub quick start
 البرنامج محلي؛ لا تنشر مفاتيحك أو تسجيلات خاصة.
 
 اقرأ README_AR.md للتفاصيل وحلول المشكلات.
+
+إذا winget معطل برمز 0x80073cfc، استخدم المثبت المحلي داخل المشروع:
+  .\INSTALL_MEDIA_WINDOWS.bat
+هو يثبت FFmpeg وFFprobe وDeno في .tools ويضبط PATH أثناء تشغيل المشروع فقط.
