@@ -1,30 +1,32 @@
-# Data, sample media, and provenance
+# Data and evaluation provenance
 
-## Original sample
+## Historical Arabic example
 
-`examples/sample.json` and `examples/ground_truth.txt` are preserved unchanged. The
-sample metadata links to a public educational dialogue titled “At the doctor” and
-records the source, duration, hash, reference, and previously supplied transcripts.
-The user identified this as non-patient test material.
+`examples/sample.json` contains a previously supplied Arabic reference and
+candidate transcripts for the educational **At the doctor** dialogue. The
+reference was supplied by the owner and was **not independently verified
+against the original audio** as part of the public migration.
 
-The original source URL is retained in `examples/sample.json`. This is attribution,
-not a claim that a redistribution license has been verified. The sample reference
-was user-supplied and was not independently checked against audio in this migration.
+The example's first candidate was historically called **ASR AI Transcriber**.
+Its underlying provider/model is **unknown**, so the current example labels it
+**Unverified ASR model · supplied**. It must not be attributed to HUMAIN.
+The other sample candidate is labeled ElevenLabs in the original supplied
+material, but its original model version and API request were **not
+independently verified**. Neither candidate is evidence of a newly executed
+provider request.
 
-**Do not relabel the historical candidates:** the first is recorded as an unknown
-“ASR AI Transcriber”; the bundled ElevenLabs candidate does not independently verify
-a model version. Neither is a new inference request performed during migration.
-These supplied outputs are distinct from the application's live HUMAIN and ElevenLabs
-adapters.
+Earlier snapshots may contain the original labels. Do not reinterpret them as
+live HUMAIN results. A `supplied` result means text was scored locally; a
+`live` result identifies the runtime processing path, not an independently
+certified provider benchmark.
 
-## Separate audio fixture
+The reference, source URL, estimated duration and expected original-media
+metadata are included for transparency. This is **not patient clinical data**.
 
-The full local delivery bundle preserves the original `examples/doctor_clip.mp3`.
-The source repository can be used without it for imported-text evaluation, but the
-original pinned-sample playback/audio-processing paths and some regression tests
-require it.
+## Why the MP3 is not in GitHub
 
-Expected original file:
+The historical full local bundle contained `examples/doctor_clip.mp3`. Its
+original expected metadata was:
 
 ```text
 Path:    examples/doctor_clip.mp3
@@ -32,28 +34,30 @@ Bytes:   2505068
 SHA-256: ee8011b5240ea0a5189489926cb7cc2386810621a467f4c84bd3533417e29abb
 ```
 
-Restore this exact file from the full delivery bundle to run the original media
-fixtures. Do not silently substitute a different recording under the original hash
-or pretend that a newly downloaded/transcoded file is byte-identical.
+Public redistributability was not established. The public repository omits
+the MP3; do not claim that the media-backed example can run from a clean clone.
+The **View sample results** route can score the saved text without the MP3.
+Live ASR requires a permitted local upload or accessible YouTube media instead.
 
-If the media is not present in a clone, that is an explicitly documented packaging
-limitation, not a new dataset. The original source and test suite are not rewritten
-to hide that dependency. `tools/verify_source.py` reports optional media separately;
-`verify_package.py` retains the original full-package semantics.
+Tests requiring the historical MP3 should be reported as requiring a
+**nonpublic fixture**, not silently represented as passing. Do not substitute
+different audio while claiming the original checksum.
 
-## Additional portfolio example
+## Portfolio demonstration
 
-`examples/portfolio/transcripts.json` contains short synthetic English text and
-intentionally edited candidates. It demonstrates deletions, substitutions, and
-insertions without patient information, an audio recording, or provider calls.
-The names “Demo A” and “Demo B” identify authored candidates, not real models.
+`examples/portfolio/transcripts.json` uses **synthetic, manually authored
+English transcripts**. The generated HTML, JSON and CSV results demonstrate
+scoring and visualization, **not actual model performance**. No original
+patient audio or provider traffic is involved.
 
-## Results and reports
+## Publishing and interpreting results
 
-A fresh local test run does not establish real-model quality. Its transports are
-mocked or its text supplied. Private runtime recordings/results belong in `data/`,
-which is excluded from version control by the portfolio guardrails.
+- WER/CER measures edit distance relative to the selected reference and
+  normalization policy, not medical, semantic or universal model quality.
+- An illustrative 0% error rate is not evidence that a model is always accurate.
+- Failed requests must remain failures, not zero-error predictions.
+- Runtime jobs, private uploads, transcripts and raw responses are saved
+  under ignored `data/`. Review local export files before sharing.
+- Do not commit API keys, company-confidential recordings or patient data.
 
-Any generated portfolio report must state the input provenance, evaluation engine,
-normalization policy, and whether inference occurred. Never present an illustrative
-sample score as a representative benchmark or clinical validation.
+See [verification scope](VERIFICATION.md) and [security notes](../../SECURITY.md).
