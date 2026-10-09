@@ -42,6 +42,11 @@ jobs:
         run: |
           .\.venv\Scripts\python.exe -m yt_dlp --version
           .\.venv\Scripts\python.exe -c "import flask, waitress, humain_voice; print('Backend dependencies available')"
+      - name: Extended offline regression audit (diagnostic)
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          .\.venv\Scripts\python.exe run_tests.py
       - name: Offline setup regression tests and UI integrity
         shell: pwsh
         run: |
