@@ -54,15 +54,17 @@ winget source update
 - **رابط YouTube:** `yt-dlp` يُثبّت تلقائيًا ضمن مكتبات المشروع. ثبّت Deno (موصى به) بالأمر `winget install -e --id DenoLand.Deno`.
 - أغلق PowerShell وافتحه مجددًا بعد تثبيت FFmpeg أو Deno عبر winget. لا تحتاج إعادة فتحه عند استخدام المثبت المحلي.
 
-فحص سريع:
+فحص سريع بعد استخدام المثبت المحلي:
 
 ```powershell
-ffmpeg -version
-ffprobe -version
-deno --version
+.\.tools\ffmpeg\ffmpeg.exe -version
+.\.tools\ffmpeg\ffprobe.exe -version
+.\.tools\deno\deno.exe --version
 .\.venv\Scripts\python.exe -m yt_dlp --version
 .\.venv\Scripts\python.exe diagnose.py
 ```
+
+إذا ثبّت الأدوات باستخدام winget بدل المثبت المحلي، استخدم الأوامر العامة `ffmpeg -version` و`ffprobe -version` و`deno --version` بعد فتح PowerShell من جديد.
 
 قد ترفض YouTube بعض المقاطع؛ ارفع ملفًا صوتيًا من جهازك بدلًا منها.
 
