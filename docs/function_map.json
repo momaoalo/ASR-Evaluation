@@ -1,0 +1,792 @@
+[
+  {
+    "file": "app.py",
+    "function": "create_app",
+    "line": 30
+  },
+  {
+    "file": "app.py",
+    "function": "local_boundary",
+    "line": 45
+  },
+  {
+    "file": "app.py",
+    "function": "headers",
+    "line": 56
+  },
+  {
+    "file": "app.py",
+    "function": "safe_error",
+    "line": 64
+  },
+  {
+    "file": "app.py",
+    "function": "index",
+    "line": 74
+  },
+  {
+    "file": "app.py",
+    "function": "build_route",
+    "line": 92
+  },
+  {
+    "file": "app.py",
+    "function": "health",
+    "line": 102
+  },
+  {
+    "file": "app.py",
+    "function": "sample",
+    "line": 111
+  },
+  {
+    "file": "app.py",
+    "function": "sample_audio",
+    "line": 115
+  },
+  {
+    "file": "app.py",
+    "function": "sample_score",
+    "line": 119
+  },
+  {
+    "file": "app.py",
+    "function": "imported_evaluate",
+    "line": 136
+  },
+  {
+    "file": "app.py",
+    "function": "upload",
+    "line": 164
+  },
+  {
+    "file": "app.py",
+    "function": "evaluate_route",
+    "line": 171
+  },
+  {
+    "file": "app.py",
+    "function": "job_list",
+    "line": 195
+  },
+  {
+    "file": "app.py",
+    "function": "job_status_route",
+    "line": 199
+  },
+  {
+    "file": "app.py",
+    "function": "cancel_job",
+    "line": 203
+  },
+  {
+    "file": "app.py",
+    "function": "snapshot",
+    "line": 206
+  },
+  {
+    "file": "app.py",
+    "function": "overview_snapshot",
+    "line": 225
+  },
+  {
+    "file": "app.py",
+    "function": "overview_route",
+    "line": 229
+  },
+  {
+    "file": "app.py",
+    "function": "export_overview_route",
+    "line": 234
+  },
+  {
+    "file": "app.py",
+    "function": "review_route",
+    "line": 249
+  },
+  {
+    "file": "app.py",
+    "function": "reference_route",
+    "line": 254
+  },
+  {
+    "file": "app.py",
+    "function": "overview_json",
+    "line": 260
+  },
+  {
+    "file": "app.py",
+    "function": "overview_csv",
+    "line": 270
+  },
+  {
+    "file": "app.py",
+    "function": "results_route",
+    "line": 279
+  },
+  {
+    "file": "app.py",
+    "function": "result_detail_route",
+    "line": 291
+  },
+  {
+    "file": "app.py",
+    "function": "case_audio",
+    "line": 299
+  },
+  {
+    "file": "app.py",
+    "function": "rescore_route",
+    "line": 309
+  },
+  {
+    "file": "app.py",
+    "function": "export_report_route",
+    "line": 322
+  },
+  {
+    "file": "app.py",
+    "function": "export_json",
+    "line": 333
+  },
+  {
+    "file": "config.py",
+    "function": "data",
+    "line": 34
+  },
+  {
+    "file": "config.py",
+    "function": "credentials",
+    "line": 37
+  },
+  {
+    "file": "evaluation/dashboard.py",
+    "function": "_policy",
+    "line": 17
+  },
+  {
+    "file": "evaluation/dashboard.py",
+    "function": "_totals",
+    "line": 30
+  },
+  {
+    "file": "evaluation/dashboard.py",
+    "function": "_review",
+    "line": 44
+  },
+  {
+    "file": "evaluation/dashboard.py",
+    "function": "build_dashboard",
+    "line": 52
+  },
+  {
+    "file": "evaluation/dashboard.py",
+    "function": "pairs_for",
+    "line": 148
+  },
+  {
+    "file": "evaluation/evaluator.py",
+    "function": "_engine_alignment",
+    "line": 12
+  },
+  {
+    "file": "evaluation/evaluator.py",
+    "function": "_tokens",
+    "line": 29
+  },
+  {
+    "file": "evaluation/evaluator.py",
+    "function": "build_error_details",
+    "line": 40
+  },
+  {
+    "file": "evaluation/evaluator.py",
+    "function": "_score",
+    "line": 64
+  },
+  {
+    "file": "evaluation/evaluator.py",
+    "function": "evaluate_transcription",
+    "line": 84
+  },
+  {
+    "file": "evaluation/evaluator.py",
+    "function": "aggregate_results",
+    "line": 117
+  },
+  {
+    "file": "evaluation/normalizer.py",
+    "function": "validate_text",
+    "line": 38
+  },
+  {
+    "file": "evaluation/normalizer.py",
+    "function": "validate_profile",
+    "line": 46
+  },
+  {
+    "file": "evaluation/normalizer.py",
+    "function": "_nfc_items",
+    "line": 61
+  },
+  {
+    "file": "evaluation/normalizer.py",
+    "function": "flush",
+    "line": 64
+  },
+  {
+    "file": "evaluation/normalizer.py",
+    "function": "normalize_text",
+    "line": 84
+  },
+  {
+    "file": "evaluation/normalizer.py",
+    "function": "change",
+    "line": 89
+  },
+  {
+    "file": "evaluation/normalizer.py",
+    "function": "text_warnings",
+    "line": 207
+  },
+  {
+    "file": "evaluation/normalizer.py",
+    "function": "extract_spoken_text",
+    "line": 221
+  },
+  {
+    "file": "evaluation/orthography.py",
+    "function": "apply_reviewed_variants",
+    "line": 29
+  },
+  {
+    "file": "evaluation/overview.py",
+    "function": "compact_case",
+    "line": 17
+  },
+  {
+    "file": "evaluation/overview.py",
+    "function": "validate_filters",
+    "line": 63
+  },
+  {
+    "file": "evaluation/overview.py",
+    "function": "_case_identity",
+    "line": 79
+  },
+  {
+    "file": "evaluation/overview.py",
+    "function": "_identity",
+    "line": 88
+  },
+  {
+    "file": "evaluation/overview.py",
+    "function": "_checked_metric",
+    "line": 117
+  },
+  {
+    "file": "evaluation/overview.py",
+    "function": "build_overview",
+    "line": 136
+  },
+  {
+    "file": "evaluation/overview.py",
+    "function": "build_case_list",
+    "line": 277
+  },
+  {
+    "file": "evaluation/profiles.py",
+    "function": "profile_catalog",
+    "line": 23
+  },
+  {
+    "file": "evaluation/profiles.py",
+    "function": "get_cleaning_profile",
+    "line": 30
+  },
+  {
+    "file": "evaluation/profiles.py",
+    "function": "validate_score_view",
+    "line": 35
+  },
+  {
+    "file": "evaluation/profiles.py",
+    "function": "get_preset",
+    "line": 41
+  },
+  {
+    "file": "evaluation/profiles.py",
+    "function": "describe_profile",
+    "line": 47
+  },
+  {
+    "file": "evaluation/report_metadata.py",
+    "function": "text_id",
+    "line": 8
+  },
+  {
+    "file": "evaluation/report_metadata.py",
+    "function": "video_id",
+    "line": 13
+  },
+  {
+    "file": "evaluation/report_metadata.py",
+    "function": "audio_identity",
+    "line": 26
+  },
+  {
+    "file": "evaluation/report_metadata.py",
+    "function": "attach_metadata",
+    "line": 66
+  },
+  {
+    "file": "evaluation/rule_based.py",
+    "function": "_word_spans",
+    "line": 18
+  },
+  {
+    "file": "evaluation/rule_based.py",
+    "function": "is_arabic_letter",
+    "line": 41
+  },
+  {
+    "file": "evaluation/rule_based.py",
+    "function": "is_arabic_vowel",
+    "line": 45
+  },
+  {
+    "file": "evaluation/rule_based.py",
+    "function": "fold_character",
+    "line": 52
+  },
+  {
+    "file": "evaluation/rule_based.py",
+    "function": "fold_arabic_joiners",
+    "line": 70
+  },
+  {
+    "file": "evaluation/rule_based.py",
+    "function": "apply_suffix_rules",
+    "line": 98
+  },
+  {
+    "file": "evaluation/rule_based.py",
+    "function": "policy_warnings",
+    "line": 153
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "_retry_file_operation",
+    "line": 25
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "file_hash",
+    "line": 41
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "calculate",
+    "line": 43
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "_read_text",
+    "line": 52
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "_staging_directory",
+    "line": 58
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "_copy_new_file",
+    "line": 85
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "transfer",
+    "line": 92
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "_linked",
+    "line": 104
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "_hardcoded_keys",
+    "line": 108
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "import_state",
+    "line": 127
+  },
+  {
+    "file": "import_old_data.py",
+    "function": "main",
+    "line": 242
+  },
+  {
+    "file": "jobs.py",
+    "function": "__init__",
+    "line": 13
+  },
+  {
+    "file": "jobs.py",
+    "function": "path",
+    "line": 32
+  },
+  {
+    "file": "jobs.py",
+    "function": "get",
+    "line": 35
+  },
+  {
+    "file": "jobs.py",
+    "function": "public",
+    "line": 38
+  },
+  {
+    "file": "jobs.py",
+    "function": "list",
+    "line": 48
+  },
+  {
+    "file": "jobs.py",
+    "function": "patch",
+    "line": 61
+  },
+  {
+    "file": "jobs.py",
+    "function": "create_job",
+    "line": 67
+  },
+  {
+    "file": "jobs.py",
+    "function": "cancel",
+    "line": 79
+  },
+  {
+    "file": "jobs.py",
+    "function": "_work",
+    "line": 86
+  },
+  {
+    "file": "jobs.py",
+    "function": "execute",
+    "line": 103
+  },
+  {
+    "file": "jobs.py",
+    "function": "update",
+    "line": 105
+  },
+  {
+    "file": "jobs.py",
+    "function": "close",
+    "line": 142
+  },
+  {
+    "file": "pipeline.py",
+    "function": "build_case",
+    "line": 19
+  },
+  {
+    "file": "pipeline.py",
+    "function": "validate_request",
+    "line": 49
+  },
+  {
+    "file": "pipeline.py",
+    "function": "save_uploaded_audio",
+    "line": 70
+  },
+  {
+    "file": "pipeline.py",
+    "function": "resolve_uploaded_audio",
+    "line": 88
+  },
+  {
+    "file": "pipeline.py",
+    "function": "record_failure",
+    "line": 97
+  },
+  {
+    "file": "pipeline.py",
+    "function": "run_case",
+    "line": 105
+  },
+  {
+    "file": "pipeline.py",
+    "function": "step",
+    "line": 112
+  },
+  {
+    "file": "pipeline.py",
+    "function": "score_imported_case",
+    "line": 163
+  },
+  {
+    "file": "pipeline.py",
+    "function": "run_batch",
+    "line": 181
+  },
+  {
+    "file": "reporting.py",
+    "function": "public_case",
+    "line": 10
+  },
+  {
+    "file": "reporting.py",
+    "function": "export_html_report",
+    "line": 26
+  },
+  {
+    "file": "reporting.py",
+    "function": "export_overview_report",
+    "line": 34
+  },
+  {
+    "file": "reporting.py",
+    "function": "csv_results",
+    "line": 67
+  },
+  {
+    "file": "reporting.py",
+    "function": "safe",
+    "line": 76
+  },
+  {
+    "file": "reporting_review.py",
+    "function": "load_reviews",
+    "line": 8
+  },
+  {
+    "file": "reporting_review.py",
+    "function": "save_review",
+    "line": 21
+  },
+  {
+    "file": "reporting_review.py",
+    "function": "rescore_reference",
+    "line": 34
+  },
+  {
+    "file": "run_local.py",
+    "function": "existing_server",
+    "line": 15
+  },
+  {
+    "file": "run_local.py",
+    "function": "main",
+    "line": 23
+  },
+  {
+    "file": "run_local.py",
+    "function": "open_when_ready",
+    "line": 36
+  },
+  {
+    "file": "services/asr_common.py",
+    "function": "__init__",
+    "line": 5
+  },
+  {
+    "file": "services/asr_common.py",
+    "function": "classify_api_error",
+    "line": 10
+  },
+  {
+    "file": "services/asr_common.py",
+    "function": "build_model_result",
+    "line": 21
+  },
+  {
+    "file": "services/audio_processor.py",
+    "function": "run_media",
+    "line": 11
+  },
+  {
+    "file": "services/audio_processor.py",
+    "function": "probe_audio",
+    "line": 24
+  },
+  {
+    "file": "services/audio_processor.py",
+    "function": "prepare_audio",
+    "line": 49
+  },
+  {
+    "file": "services/downloader.py",
+    "function": "canonical_youtube_url",
+    "line": 11
+  },
+  {
+    "file": "services/downloader.py",
+    "function": "download_audio",
+    "line": 33
+  },
+  {
+    "file": "services/elevenlabs_asr.py",
+    "function": "request_settings",
+    "line": 19
+  },
+  {
+    "file": "services/elevenlabs_asr.py",
+    "function": "_provider_message",
+    "line": 39
+  },
+  {
+    "file": "services/elevenlabs_asr.py",
+    "function": "_http_error",
+    "line": 64
+  },
+  {
+    "file": "services/elevenlabs_asr.py",
+    "function": "transcribe_elevenlabs",
+    "line": 79
+  },
+  {
+    "file": "services/humain_asr.py",
+    "function": "validate_connection",
+    "line": 23
+  },
+  {
+    "file": "services/humain_asr.py",
+    "function": "request_settings",
+    "line": 33
+  },
+  {
+    "file": "services/humain_asr.py",
+    "function": "transcribe_humain",
+    "line": 40
+  },
+  {
+    "file": "services/humain_asr.py",
+    "function": "_plain",
+    "line": 67
+  },
+  {
+    "file": "services/humain_asr.py",
+    "function": "_worker",
+    "line": 85
+  },
+  {
+    "file": "storage.py",
+    "function": "now",
+    "line": 12
+  },
+  {
+    "file": "storage.py",
+    "function": "new_id",
+    "line": 16
+  },
+  {
+    "file": "storage.py",
+    "function": "valid_id",
+    "line": 20
+  },
+  {
+    "file": "storage.py",
+    "function": "digest",
+    "line": 26
+  },
+  {
+    "file": "storage.py",
+    "function": "file_hash",
+    "line": 31
+  },
+  {
+    "file": "storage.py",
+    "function": "read_json",
+    "line": 39
+  },
+  {
+    "file": "storage.py",
+    "function": "write_json",
+    "line": 43
+  },
+  {
+    "file": "storage.py",
+    "function": "save_result",
+    "line": 58
+  },
+  {
+    "file": "storage.py",
+    "function": "load_results",
+    "line": 63
+  },
+  {
+    "file": "storage.py",
+    "function": "load_result",
+    "line": 68
+  },
+  {
+    "file": "storage.py",
+    "function": "save_raw_response",
+    "line": 72
+  },
+  {
+    "file": "storage.py",
+    "function": "__init__",
+    "line": 84
+  },
+  {
+    "file": "storage.py",
+    "function": "load",
+    "line": 90
+  },
+  {
+    "file": "ui_integrity.py",
+    "function": "verify_ui_files",
+    "line": 10
+  },
+  {
+    "file": "ui_integrity.py",
+    "function": "repair_page",
+    "line": 35
+  },
+  {
+    "file": "update_existing.py",
+    "function": "retry",
+    "line": 21
+  },
+  {
+    "file": "update_existing.py",
+    "function": "sha",
+    "line": 32
+  },
+  {
+    "file": "update_existing.py",
+    "function": "safe_name",
+    "line": 40
+  },
+  {
+    "file": "update_existing.py",
+    "function": "atomic_copy",
+    "line": 49
+  },
+  {
+    "file": "update_existing.py",
+    "function": "port_busy",
+    "line": 66
+  },
+  {
+    "file": "update_existing.py",
+    "function": "install",
+    "line": 72
+  },
+  {
+    "file": "update_existing.py",
+    "function": "main",
+    "line": 134
+  },
+  {
+    "file": "verify_package.py",
+    "function": "verify",
+    "line": 9
+  }
+]

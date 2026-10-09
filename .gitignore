@@ -1,0 +1,23 @@
+# Local credentials and private runtime state
+.env
+.env.*
+!.env.example
+config.local.json
+data/
+*.pem
+*.key
+
+# Environments, caches and temporary files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+.DS_Store
+Thumbs.db
+
+# Personal fresh test runs; curated migration evidence is tracked
+verification/local_test_results.json

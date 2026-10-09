@@ -1,0 +1,638 @@
+{
+  "source_sha256": "62196da6c14e0f49669d624f042c983e86510152bd998701ba8da0a96307c2a7",
+  "checks_count": 68,
+  "all_match": true,
+  "checks": [
+    {
+      "run": "run_2ca5a2bd694441a5b77e",
+      "model": "humain",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.4418604651162791,
+      "saved": 0.4418604651162791,
+      "ok": true
+    },
+    {
+      "run": "run_2ca5a2bd694441a5b77e",
+      "model": "humain",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.09033613445378151,
+      "saved": 0.09033613445378151,
+      "ok": true
+    },
+    {
+      "run": "run_2ca5a2bd694441a5b77e",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.046511627906976744,
+      "saved": 0.046511627906976744,
+      "ok": true
+    },
+    {
+      "run": "run_2ca5a2bd694441a5b77e",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.01152073732718894,
+      "saved": 0.01152073732718894,
+      "ok": true
+    },
+    {
+      "run": "run_5324e0151aa642afa4db",
+      "model": "humain",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.4418604651162791,
+      "saved": 0.4418604651162791,
+      "ok": true
+    },
+    {
+      "run": "run_5324e0151aa642afa4db",
+      "model": "humain",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.09033613445378151,
+      "saved": 0.09033613445378151,
+      "ok": true
+    },
+    {
+      "run": "run_5324e0151aa642afa4db",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.046511627906976744,
+      "saved": 0.046511627906976744,
+      "ok": true
+    },
+    {
+      "run": "run_5324e0151aa642afa4db",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.01152073732718894,
+      "saved": 0.01152073732718894,
+      "ok": true
+    },
+    {
+      "run": "run_5324e0151aa642afa4db",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.046511627906976744,
+      "saved": 0.046511627906976744,
+      "ok": true
+    },
+    {
+      "run": "run_5324e0151aa642afa4db",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.012605042016806723,
+      "saved": 0.012605042016806723,
+      "ok": true
+    },
+    {
+      "run": "run_5324e0151aa642afa4db",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "run_5324e0151aa642afa4db",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "run_7387013fa9564f5e8da5",
+      "model": "humain",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.4418604651162791,
+      "saved": 0.4418604651162791,
+      "ok": true
+    },
+    {
+      "run": "run_7387013fa9564f5e8da5",
+      "model": "humain",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.09033613445378151,
+      "saved": 0.09033613445378151,
+      "ok": true
+    },
+    {
+      "run": "run_7387013fa9564f5e8da5",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.046511627906976744,
+      "saved": 0.046511627906976744,
+      "ok": true
+    },
+    {
+      "run": "run_7387013fa9564f5e8da5",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.01152073732718894,
+      "saved": 0.01152073732718894,
+      "ok": true
+    },
+    {
+      "run": "run_7387013fa9564f5e8da5",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.03488372093023256,
+      "saved": 0.03488372093023256,
+      "ok": true
+    },
+    {
+      "run": "run_7387013fa9564f5e8da5",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.01050420168067227,
+      "saved": 0.01050420168067227,
+      "ok": true
+    },
+    {
+      "run": "run_7387013fa9564f5e8da5",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "run_7387013fa9564f5e8da5",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "run_812d92de1673431eb4ca",
+      "model": "humain",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.4418604651162791,
+      "saved": 0.4418604651162791,
+      "ok": true
+    },
+    {
+      "run": "run_812d92de1673431eb4ca",
+      "model": "humain",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.09033613445378151,
+      "saved": 0.09033613445378151,
+      "ok": true
+    },
+    {
+      "run": "run_812d92de1673431eb4ca",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.046511627906976744,
+      "saved": 0.046511627906976744,
+      "ok": true
+    },
+    {
+      "run": "run_812d92de1673431eb4ca",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.01152073732718894,
+      "saved": 0.01152073732718894,
+      "ok": true
+    },
+    {
+      "run": "run_94c9ef842a414675b09a",
+      "model": "humain",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 1.0465116279069768,
+      "saved": 1.0465116279069768,
+      "ok": true
+    },
+    {
+      "run": "run_94c9ef842a414675b09a",
+      "model": "humain",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.7773109243697479,
+      "saved": 0.7773109243697479,
+      "ok": true
+    },
+    {
+      "run": "run_94c9ef842a414675b09a",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 1.0116279069767442,
+      "saved": 1.0116279069767442,
+      "ok": true
+    },
+    {
+      "run": "run_94c9ef842a414675b09a",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.7442396313364056,
+      "saved": 0.7442396313364056,
+      "ok": true
+    },
+    {
+      "run": "run_94c9ef842a414675b09a",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 1.0116279069767442,
+      "saved": 1.0116279069767442,
+      "ok": true
+    },
+    {
+      "run": "run_94c9ef842a414675b09a",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.7899159663865546,
+      "saved": 0.7899159663865546,
+      "ok": true
+    },
+    {
+      "run": "run_94c9ef842a414675b09a",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 1.0116279069767442,
+      "saved": 1.0116279069767442,
+      "ok": true
+    },
+    {
+      "run": "run_94c9ef842a414675b09a",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.7442396313364056,
+      "saved": 0.7442396313364056,
+      "ok": true
+    },
+    {
+      "run": "run_99ec8888237e4c03b7ae",
+      "model": "humain",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 1.0465116279069768,
+      "saved": 1.0465116279069768,
+      "ok": true
+    },
+    {
+      "run": "run_99ec8888237e4c03b7ae",
+      "model": "humain",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.7773109243697479,
+      "saved": 0.7773109243697479,
+      "ok": true
+    },
+    {
+      "run": "run_99ec8888237e4c03b7ae",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 1.0116279069767442,
+      "saved": 1.0116279069767442,
+      "ok": true
+    },
+    {
+      "run": "run_99ec8888237e4c03b7ae",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.7442396313364056,
+      "saved": 0.7442396313364056,
+      "ok": true
+    },
+    {
+      "run": "run_c0354cbf4e574da29c20",
+      "model": "humain",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.4418604651162791,
+      "saved": 0.4418604651162791,
+      "ok": true
+    },
+    {
+      "run": "run_c0354cbf4e574da29c20",
+      "model": "humain",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.09033613445378151,
+      "saved": 0.09033613445378151,
+      "ok": true
+    },
+    {
+      "run": "run_c0354cbf4e574da29c20",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.046511627906976744,
+      "saved": 0.046511627906976744,
+      "ok": true
+    },
+    {
+      "run": "run_c0354cbf4e574da29c20",
+      "model": "humain",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.01152073732718894,
+      "saved": 0.01152073732718894,
+      "ok": true
+    },
+    {
+      "run": "run_c0354cbf4e574da29c20",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.046511627906976744,
+      "saved": 0.046511627906976744,
+      "ok": true
+    },
+    {
+      "run": "run_c0354cbf4e574da29c20",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.012605042016806723,
+      "saved": 0.012605042016806723,
+      "ok": true
+    },
+    {
+      "run": "run_c0354cbf4e574da29c20",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "run_c0354cbf4e574da29c20",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "sample_5770fc3ce9f548aba59d",
+      "model": "ai_transcriber",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.43023255813953487,
+      "saved": 0.43023255813953487,
+      "ok": true
+    },
+    {
+      "run": "sample_5770fc3ce9f548aba59d",
+      "model": "ai_transcriber",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.09243697478991597,
+      "saved": 0.09243697478991597,
+      "ok": true
+    },
+    {
+      "run": "sample_5770fc3ce9f548aba59d",
+      "model": "ai_transcriber",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.011627906976744186,
+      "saved": 0.011627906976744186,
+      "ok": true
+    },
+    {
+      "run": "sample_5770fc3ce9f548aba59d",
+      "model": "ai_transcriber",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.002304147465437788,
+      "saved": 0.002304147465437788,
+      "ok": true
+    },
+    {
+      "run": "sample_5770fc3ce9f548aba59d",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.11627906976744186,
+      "saved": 0.11627906976744186,
+      "ok": true
+    },
+    {
+      "run": "sample_5770fc3ce9f548aba59d",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.031512605042016806,
+      "saved": 0.031512605042016806,
+      "ok": true
+    },
+    {
+      "run": "sample_5770fc3ce9f548aba59d",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "sample_5770fc3ce9f548aba59d",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "sample_85bcc73732dd447c991a",
+      "model": "ai_transcriber",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.43023255813953487,
+      "saved": 0.43023255813953487,
+      "ok": true
+    },
+    {
+      "run": "sample_85bcc73732dd447c991a",
+      "model": "ai_transcriber",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.09243697478991597,
+      "saved": 0.09243697478991597,
+      "ok": true
+    },
+    {
+      "run": "sample_85bcc73732dd447c991a",
+      "model": "ai_transcriber",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.011627906976744186,
+      "saved": 0.011627906976744186,
+      "ok": true
+    },
+    {
+      "run": "sample_85bcc73732dd447c991a",
+      "model": "ai_transcriber",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.002304147465437788,
+      "saved": 0.002304147465437788,
+      "ok": true
+    },
+    {
+      "run": "sample_85bcc73732dd447c991a",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.11627906976744186,
+      "saved": 0.11627906976744186,
+      "ok": true
+    },
+    {
+      "run": "sample_85bcc73732dd447c991a",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.031512605042016806,
+      "saved": 0.031512605042016806,
+      "ok": true
+    },
+    {
+      "run": "sample_85bcc73732dd447c991a",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "sample_85bcc73732dd447c991a",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "sample_8da66d2420a74b4c82a6",
+      "model": "ai_transcriber",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.43023255813953487,
+      "saved": 0.43023255813953487,
+      "ok": true
+    },
+    {
+      "run": "sample_8da66d2420a74b4c82a6",
+      "model": "ai_transcriber",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.09243697478991597,
+      "saved": 0.09243697478991597,
+      "ok": true
+    },
+    {
+      "run": "sample_8da66d2420a74b4c82a6",
+      "model": "ai_transcriber",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.011627906976744186,
+      "saved": 0.011627906976744186,
+      "ok": true
+    },
+    {
+      "run": "sample_8da66d2420a74b4c82a6",
+      "model": "ai_transcriber",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.002304147465437788,
+      "saved": 0.002304147465437788,
+      "ok": true
+    },
+    {
+      "run": "sample_8da66d2420a74b4c82a6",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "wer",
+      "expected": 0.11627906976744186,
+      "saved": 0.11627906976744186,
+      "ok": true
+    },
+    {
+      "run": "sample_8da66d2420a74b4c82a6",
+      "model": "elevenlabs",
+      "view": "raw",
+      "metric": "cer",
+      "expected": 0.031512605042016806,
+      "saved": 0.031512605042016806,
+      "ok": true
+    },
+    {
+      "run": "sample_8da66d2420a74b4c82a6",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "wer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    },
+    {
+      "run": "sample_8da66d2420a74b4c82a6",
+      "model": "elevenlabs",
+      "view": "normalized",
+      "metric": "cer",
+      "expected": 0.0,
+      "saved": 0.0,
+      "ok": true
+    }
+  ],
+  "untouched_components": {
+    "evaluation/normalizer.py": true,
+    "evaluation/evaluator.py": true,
+    "evaluation/profiles.py": true,
+    "services/humain_asr.py": true,
+    "services/elevenlabs_asr.py": true,
+    "examples/doctor_clip.mp3": true,
+    "examples/ground_truth.txt": true
+  },
+  "new_totals": {
+    "listed_case_count": 12,
+    "successful_transcripts": 17,
+    "audio_input_count": 3,
+    "duration": 295.824938,
+    "media_unavailable_cases": 2,
+    "matched_cases": 3,
+    "unresolved_review_cases": 2
+  },
+  "scope": "User-provided snapshot. Independent DP arithmetic checks. No audio verification or API calls; original stored scores unchanged."
+}

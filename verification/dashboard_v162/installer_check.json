@@ -1,0 +1,15 @@
+{
+  "from_build": "dashboard-1.6.1",
+  "to_build": "dashboard-1.6.2",
+  "protected_files": 27,
+  "protected_files_unchanged": true,
+  "package_issues": [],
+  "ui_issues": [],
+  "updater_summary": {
+    "copied": 19,
+    "unchanged": 77,
+    "backup": "/mnt/data/asr_metrics_1_6_2/install_check/asr-code-backup-20260917-105451-k3asr0l7",
+    "target": "/mnt/data/asr_metrics_1_6_2/install_check/asr-evaluator"
+  },
+  "platform_note": "Installer logic exercised on Linux temporary files; no Windows BAT execution."
+}

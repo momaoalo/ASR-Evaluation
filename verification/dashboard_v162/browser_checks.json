@@ -1,0 +1,190 @@
+{
+  "checks": [
+    {
+      "name": "all twelve prior cases visible",
+      "passed": true
+    },
+    {
+      "name": "two top model scorecards",
+      "passed": true
+    },
+    {
+      "name": "humain mean-wer matches Python",
+      "passed": true
+    },
+    {
+      "name": "humain mean-cer matches Python",
+      "passed": true
+    },
+    {
+      "name": "humain total S matches Python",
+      "passed": true
+    },
+    {
+      "name": "humain total D matches Python",
+      "passed": true
+    },
+    {
+      "name": "humain total I matches Python",
+      "passed": true
+    },
+    {
+      "name": "elevenlabs mean-wer matches Python",
+      "passed": true
+    },
+    {
+      "name": "elevenlabs mean-cer matches Python",
+      "passed": true
+    },
+    {
+      "name": "elevenlabs total S matches Python",
+      "passed": true
+    },
+    {
+      "name": "elevenlabs total D matches Python",
+      "passed": true
+    },
+    {
+      "name": "elevenlabs total I matches Python",
+      "passed": true
+    },
+    {
+      "name": "no pinned sample in overview",
+      "passed": true
+    },
+    {
+      "name": "no separate quality or configurations section",
+      "passed": true
+    },
+    {
+      "name": "charts collapsed initially",
+      "passed": true
+    },
+    {
+      "name": "charts jump opens section",
+      "passed": true
+    },
+    {
+      "name": "both charts render",
+      "passed": true
+    },
+    {
+      "name": "no-cleaning updates average metric",
+      "passed": true
+    },
+    {
+      "name": "audio list jump is in viewport",
+      "passed": true
+    },
+    {
+      "name": "case problem disclosure does not open inspector",
+      "passed": true
+    },
+    {
+      "name": "saved run opens afa4db",
+      "passed": true
+    },
+    {
+      "name": "saved run opens 5e8da5",
+      "passed": true
+    },
+    {
+      "name": "saved run opens dab952",
+      "passed": true
+    },
+    {
+      "name": "saved run opens ccbdfe",
+      "passed": true
+    },
+    {
+      "name": "saved run opens 75b09a",
+      "passed": true
+    },
+    {
+      "name": "saved run opens a29c20",
+      "passed": true
+    },
+    {
+      "name": "saved run opens a5b77e",
+      "passed": true
+    },
+    {
+      "name": "saved run opens 1eb4ca",
+      "passed": true
+    },
+    {
+      "name": "saved run opens 03b7ae",
+      "passed": true
+    },
+    {
+      "name": "saved run opens 4c82a6",
+      "passed": true
+    },
+    {
+      "name": "saved run opens aba59d",
+      "passed": true
+    },
+    {
+      "name": "saved run opens 7c991a",
+      "passed": true
+    },
+    {
+      "name": "single job auto-opens its own inspector",
+      "passed": true
+    },
+    {
+      "name": "completion preserves no-cleaning selection",
+      "passed": true
+    },
+    {
+      "name": "completion is handled only once",
+      "passed": true
+    },
+    {
+      "name": "partial job opens saved success and failure",
+      "passed": true
+    },
+    {
+      "name": "failed job opens its actual error",
+      "passed": true
+    },
+    {
+      "name": "batch opens run list without wrong single inspector",
+      "passed": true
+    },
+    {
+      "name": "batch result is visible without manual scrolling",
+      "passed": true
+    },
+    {
+      "name": "completion does not interrupt a new form",
+      "passed": true
+    },
+    {
+      "name": "completion notice opens the finished run",
+      "passed": true
+    },
+    {
+      "name": "pending follow consumed from session storage",
+      "passed": true
+    },
+    {
+      "name": "old terminal history never auto-opens",
+      "passed": true
+    },
+    {
+      "name": "mobile has no page-wide horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile scorecard is readable width",
+      "passed": true
+    },
+    {
+      "name": "no uncaught JavaScript errors",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "http": "set_content with injected fetch/storage bridge, because browser navigation was blocked. Actual Jinja, CSS, JS and Python aggregation. No live Flask or ASR."
+}

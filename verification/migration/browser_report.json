@@ -1,0 +1,8 @@
+{
+  "target": "Standalone exported report, not Flask application",
+  "browser": "Chromium",
+  "console_page_errors": [],
+  "synthetic_label_present": true,
+  "title": "ASR Evaluation Report",
+  "screenshot": "docs/assets/synthetic-dashboard.jpg"
+}

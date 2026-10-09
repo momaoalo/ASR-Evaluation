@@ -1,0 +1,19 @@
+{
+  "scope": "Compact synthetic records, this container only; not network or real-time guarantees",
+  "measurements": [
+    {
+      "cases": 100,
+      "model_records": 200,
+      "aggregate_ms": 8.82,
+      "all_listed": true,
+      "paired": 100
+    },
+    {
+      "cases": 1000,
+      "model_records": 2000,
+      "aggregate_ms": 97.99,
+      "all_listed": true,
+      "paired": 1000
+    }
+  ]
+}

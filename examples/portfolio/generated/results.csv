@@ -1,0 +1,7 @@
+﻿run_id,case_id,title,source_type,audio_id,provider,configuration,status,provenance,view,wer_percent,cer_percent,C,S,D,I,reference_words,latest,included,needs_review,excluded,error
+synthetic_portfolio,weather,[Synthetic text] Weather,synthetic_text,,demo_a,Demo A - authored text · English · supplied,success,imported,normalized,0.0,0.0,7,0,0,0,7,True,True,False,False,
+synthetic_portfolio,weather,[Synthetic text] Weather,synthetic_text,,demo_b,Demo B - authored text · English · supplied,success,imported,normalized,28.57142857142857,28.205128205128204,5,1,1,0,7,True,True,False,False,
+synthetic_portfolio,meeting,[Synthetic text] Meeting,synthetic_text,,demo_a,Demo A - authored text · English · supplied,success,imported,normalized,14.285714285714285,9.75609756097561,6,0,1,0,7,True,True,False,False,
+synthetic_portfolio,meeting,[Synthetic text] Meeting,synthetic_text,,demo_b,Demo B - authored text · English · supplied,success,imported,normalized,14.285714285714285,14.634146341463413,7,0,0,1,7,True,True,False,False,
+synthetic_portfolio,library,[Synthetic text] Library,synthetic_text,,demo_a,Demo A - authored text · English · supplied,success,imported,normalized,12.5,5.0,7,1,0,0,8,True,True,False,False,
+synthetic_portfolio,library,[Synthetic text] Library,synthetic_text,,demo_b,Demo B - authored text · English · supplied,success,imported,normalized,0.0,0.0,8,0,0,0,8,True,True,False,False,

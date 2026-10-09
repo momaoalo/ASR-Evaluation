@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "scope": "Opt-in final-heh spelling aliases. Not a universal Arabic corrector. Review before using on a benchmark.",
+  "prefixes": [
+    "",
+    "ال",
+    "و",
+    "وال",
+    "ف",
+    "فال",
+    "ب",
+    "بال",
+    "وب",
+    "وبال",
+    "ل",
+    "لل",
+    "ول",
+    "ولل",
+    "ك",
+    "كال"
+  ],
+  "canonical_words": [
+    "ساعة",
+    "نتيجة",
+    "أشعة",
+    "اشعة",
+    "جرعة",
+    "درجة",
+    "حالة",
+    "وصفة",
+    "زيارة",
+    "جلسة",
+    "مدة",
+    "نسبة",
+    "قائمة",
+    "عينة",
+    "نسخة",
+    "مرحلة",
+    "خطة"
+  ],
+  "context_rule": {
+    "source": "مما تشكو",
+    "target": "مم تشكو",
+    "note": "Optional phrase equivalence for this interview-style transcript; not a general مما→مم rule."
+  }
+}

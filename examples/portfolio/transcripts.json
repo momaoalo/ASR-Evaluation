@@ -1,0 +1,23 @@
+{
+  "provenance": "Synthetic English text and manually authored candidates. No audio, model inference or clinical data.",
+  "cases": [
+    {
+      "id": "library",
+      "reference": "the library opens at nine in the morning",
+      "a": "the library opens at five in the morning",
+      "b": "the library opens at nine in the morning"
+    },
+    {
+      "id": "meeting",
+      "reference": "please send the meeting notes after lunch",
+      "a": "please send meeting notes after lunch",
+      "b": "please send the meeting notes right after lunch"
+    },
+    {
+      "id": "weather",
+      "reference": "we expect light rain later this evening",
+      "a": "we expect light rain later this evening",
+      "b": "we expect heavy rain this evening"
+    }
+  ]
+}

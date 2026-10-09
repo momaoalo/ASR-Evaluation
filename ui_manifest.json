@@ -1,0 +1,10 @@
+{
+  "build": "dashboard-1.6.2",
+  "files": {
+    "templates/index.html": "37061174471756c16c844a6a2d09858b0eb6ef2954240caa6444656dd37d292e",
+    "templates/_workspace.html": "c0cc979b624e1a8ff09df5fbc06eebf36415b96120a247abb90cb93f4fce3728",
+    "static/js/app.js": "718b42b5d9b92ec4d467bb10be715e0e6cec67c073e602fbe7ba92eeb337d3ae",
+    "static/js/charts.js": "76e611b71483cd9eb2b08399e7686ee72f7952a56934a19df0fb2653880b60b9",
+    "static/css/app.css": "07f7abed3b94949d92ee6180839e9f055ccdf16e84eb3208539dad95af5718f5"
+  }
+}

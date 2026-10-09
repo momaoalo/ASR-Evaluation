@@ -1,0 +1,7 @@
+{
+  "python.defaultInterpreterPath": "${env:LOCALAPPDATA}\\Programs\\Python\\Python312-arm64\\python.exe",
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "python.terminal.activateEnvironment": false
+}

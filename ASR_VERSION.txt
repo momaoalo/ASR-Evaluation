@@ -1,0 +1,2 @@
+ASR Evaluator Dashboard 1.6.2
+Complete synchronized application. UPDATE_EXISTING.bat preserves existing user data and keys.

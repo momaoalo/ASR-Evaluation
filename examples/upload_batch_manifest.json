@@ -1,0 +1,19 @@
+{
+  "name": "Local audio batch",
+  "cases": [
+    {
+      "case_id": "clip_001",
+      "title": "First audio",
+      "source": {
+        "type": "upload",
+        "filename": "clip_001.wav"
+      },
+      "crop": {
+        "start": 0,
+        "end": null
+      },
+      "ground_truth": "Replace this sentence with the manually verified transcript.",
+      "reference_confirmed": false
+    }
+  ]
+}

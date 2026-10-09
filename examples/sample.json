@@ -1,0 +1,56 @@
+{
+  "title": "At the doctor",
+  "source": {
+    "url": "https://youtu.be/IV3uF59g7rs",
+    "video_id": "IV3uF59g7rs",
+    "original_title": "عند الطبيب - Doktorda - At the doctor - Di dokter",
+    "clip_start": 0,
+    "clip_end": 104.352,
+    "reference_origin": "User transcription, spelling corrected by agreement. Not independently audio-verified in this build."
+  },
+  "audio": {
+    "duration": 104.352,
+    "sample_rate": 48000,
+    "channels": 2,
+    "codec": "mp3",
+    "sha256": "ee8011b5240ea0a5189489926cb7cc2386810621a467f4c84bd3533417e29abb",
+    "bytes": 2505068
+  },
+  "profile": {
+    "language": "ar",
+    "diacritics": true,
+    "alif": true,
+    "tatweel": true,
+    "digits": true,
+    "punctuation": true,
+    "lowercase": false,
+    "cer_spaces": true
+  },
+  "case": {
+    "case_id": "doctor_001",
+    "title": "At the doctor · Arabic",
+    "source": {
+      "type": "sample"
+    },
+    "ground_truth": "أهلًا وسهلًا بك، تفضل.\nلو سمحتِ، لدي موعد عند الطبيب.\nالطبيب في انتظارك، تفضل.\nشكرًا لك.\nمِمَّ تشكو؟\nأشعر بألم شديد في صدري، وكذلك بضيق في التنفس، وعندي سعال شديد.\nمنذ متى تشعر بهذه الأعراض؟\nمنذ يومين.\nحسنًا، استلقِ على السرير واكشف عن صدرك.\nخذ نفسًا عميقًا.\nماذا بي يا طبيب؟\nسنجري بعض التحاليل وصورة أشعة للصدر.\nوبعد ساعة ظهرت نتيجة التحاليل والأشعة.\nخيرًا يا طبيب، كيف النتيجة؟\nعندك التهاب في الصدر.\nسأكتب لك وصفة طبية تأخذها من الصيدلية.\nشكرًا جزيلًا لك يا طبيب.\nشفاك الله.",
+    "crop": {
+      "start": 0,
+      "end": null
+    }
+  },
+  "predictions": [
+    {
+      "key": "ai_transcriber",
+      "label": "ASR AI Transcriber · supplied",
+      "text": "أهلا وسهلا بك تفضل لو سمحت لدي موعد عند الطبيب الطبيب في انتظارك تفضل شكرا لك مما تشكو أشعر بألم شديد في صدري وكذلك بضيق في التنفس وعندي سعال شديد منذ متى تشعر بهذه الأعراض منذ يومين حسنا استلق على السرير واكشف عن صدرك خذ نفسا عميقا ماذا بي يا طبيب سنجري بعض التحاليل صورة أشعة للصدر وبعد ساعه ظهرت نتيجه التحاليل والاشعه خيرا يا طبيب كيف النتيجة عندك التهاب في الصدر سأكتب لك وصفة طبية تأخذها من الصيدلية شكرا جزيلا لك يا طبيب شفاك الله",
+      "format": "plain"
+    },
+    {
+      "key": "elevenlabs",
+      "label": "ElevenLabs · supplied",
+      "text": "00:00:01,080 --> 00:00:03,200 [Speaker 0]\nأهلًا وسهلًا بك. تفضل.\n\n00:00:04,320 --> 00:00:07,340 [Speaker 1]\nلو سمحتي، لدي موعد عند الطبيب.\n\n00:00:08,960 --> 00:00:11,480 [Speaker 0]\nالطبيب في انتظارك. تفضل.\n\n00:00:11,480 --> 00:00:14,940 [Speaker 1]\n[يسعل] شكراً لك.\n\n00:00:17,120 --> 00:00:18,000 [Speaker 2]\nمما تشكو؟\n\n00:00:19,500 --> 00:00:29,580 [Speaker 1]\nأشعر بألم شديد في صدري وكذلك بضيق في التنفس. [يسعل] وعندي سعال شديد.\n\n00:00:31,100 --> 00:00:33,640 [Speaker 2]\nمنذ متى تشعر بهذه الأعراض؟\n\n00:00:35,460 --> 00:00:36,460 [Speaker 1]\nمنذ يومين.\n\n00:00:37,780 --> 00:00:41,580 [Speaker 2]\nحسنًا، استلقي على السرير واكشف عن صدرك.\n\n00:00:43,100 --> 00:00:44,580 [Speaker 2]\nخذ نفسًا عميقًا.\n\n00:00:44,580 --> 00:00:50,760 [Speaker 1]\n[يتنفس بعمق] ماذا بي يا طبيب؟\n\n00:00:52,280 --> 00:00:57,040 [Speaker 2]\nسنجري بعض التحاليل وصورة أشعة للصدر.\n\n00:01:19,620 --> 00:01:24,120 [Speaker 0]\nوبعد ساعة ظهرت نتيجة التحاليل والأشعة.\n\n00:01:25,840 --> 00:01:28,280 [Speaker 1]\nخيرًا يا طبيب، كيف النتيجة؟\n\n00:01:29,880 --> 00:01:36,620 [Speaker 2]\nعندك التهاب في الصدر. سأكتب لك وصفة طبية تأخذها من الصيدلية.\n\n00:01:38,160 --> 00:01:40,460 [Speaker 1]\nشكراً جزيلاً لك يا طبيب.\n\n00:01:42,220 --> 00:01:43,360 [Speaker 2]\nشفاك الله.",
+      "format": "subtitles"
+    }
+  ],
+  "provenance": "These are previously supplied texts, NOT new API calls. AI Transcriber underlying model is unknown. ElevenLabs model version was not independently verified. No HUMAIN output is fabricated."
+}

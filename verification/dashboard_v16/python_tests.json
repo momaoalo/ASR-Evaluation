@@ -1,0 +1,151 @@
+{
+  "at": "2026-09-17T08:32:06.849524+00:00",
+  "python": "3.13.5",
+  "tests": 388,
+  "passed": 353,
+  "skipped": [
+    {
+      "test": "test_asset_version_rendered (test_audio_case_list.AudioCaseRoutesTests.test_asset_version_rendered)",
+      "reason": "Requires the installed Flask dependency"
+    },
+    {
+      "test": "test_empty_metadata_only_run_explained (test_audio_case_list.AudioCaseRoutesTests.test_empty_metadata_only_run_explained)",
+      "reason": "Requires the installed Flask dependency"
+    },
+    {
+      "test": "test_open_run_lists_all_cases (test_audio_case_list.AudioCaseRoutesTests.test_open_run_lists_all_cases)",
+      "reason": "Requires the installed Flask dependency"
+    },
+    {
+      "test": "test_open_run_with_corrupt_metrics_not_500 (test_audio_case_list.AudioCaseRoutesTests.test_open_run_with_corrupt_metrics_not_500)",
+      "reason": "Requires the installed Flask dependency"
+    },
+    {
+      "test": "test_open_run_with_missing_job_metadata (test_audio_case_list.AudioCaseRoutesTests.test_open_run_with_missing_job_metadata)",
+      "reason": "Requires the installed Flask dependency"
+    },
+    {
+      "test": "test_unknown_run_not_empty_success (test_audio_case_list.AudioCaseRoutesTests.test_unknown_run_not_empty_success)",
+      "reason": "Requires the installed Flask dependency"
+    },
+    {
+      "test": "test_workspace_audio_cases (test_audio_case_list.AudioCaseRoutesTests.test_workspace_audio_cases)",
+      "reason": "Requires the installed Flask dependency"
+    },
+    {
+      "test": "test_csv_and_json_endpoints (test_dashboard_routes_v16.DashboardRoutesTests.test_csv_and_json_endpoints)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_export_html_contains_both_views (test_dashboard_routes_v16.DashboardRoutesTests.test_export_html_contains_both_views)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_inherited_sample_reference_rejected (test_dashboard_routes_v16.DashboardRoutesTests.test_inherited_sample_reference_rejected)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_no_secret_in_export (test_dashboard_routes_v16.DashboardRoutesTests.test_no_secret_in_export)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_overview_paired_scope (test_dashboard_routes_v16.DashboardRoutesTests.test_overview_paired_scope)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_reference_corrects_new_run (test_dashboard_routes_v16.DashboardRoutesTests.test_reference_corrects_new_run)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_reference_requires_confirmation (test_dashboard_routes_v16.DashboardRoutesTests.test_reference_requires_confirmation)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_reference_unknown_case (test_dashboard_routes_v16.DashboardRoutesTests.test_reference_unknown_case)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_review_requires_csrf (test_dashboard_routes_v16.DashboardRoutesTests.test_review_requires_csrf)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_review_updates_without_mutating_results (test_dashboard_routes_v16.DashboardRoutesTests.test_review_updates_without_mutating_results)",
+      "reason": "Flask unavailable; these route tests were not executed"
+    },
+    {
+      "test": "test_official_jiwer_parity (test_normalization_audit.MathAuditTests.test_official_jiwer_parity)",
+      "reason": "JiWER not installed: official-engine parity requires local dependency installation"
+    },
+    {
+      "test": "test_bad_filter_returns_400 (test_overview.OverviewWebTests.test_bad_filter_returns_400)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_corrupt_job_does_not_blank_overview (test_overview.OverviewWebTests.test_corrupt_job_does_not_blank_overview)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_corrupt_result_warning (test_overview.OverviewWebTests.test_corrupt_result_warning)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_export_all_static_route (test_overview.OverviewWebTests.test_export_all_static_route)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_export_filtered (test_overview.OverviewWebTests.test_export_filtered)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_inspect_correct_run (test_overview.OverviewWebTests.test_inspect_correct_run)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_missing_run_returns_404 (test_overview.OverviewWebTests.test_missing_run_returns_404)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_old_single_run_endpoint_preserved (test_overview.OverviewWebTests.test_old_single_run_endpoint_preserved)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_overview_route_all (test_overview.OverviewWebTests.test_overview_route_all)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_scope_query (test_overview.OverviewWebTests.test_scope_query)",
+      "reason": "Flask unavailable in this environment"
+    },
+    {
+      "test": "test_csrf (test_web.WebTests.test_csrf)",
+      "reason": "Flask is not installed in this test environment"
+    },
+    {
+      "test": "test_missing_provider_key (test_web.WebTests.test_missing_provider_key)",
+      "reason": "Flask is not installed in this test environment"
+    },
+    {
+      "test": "test_no_secret_echo (test_web.WebTests.test_no_secret_echo)",
+      "reason": "Flask is not installed in this test environment"
+    },
+    {
+      "test": "test_origin (test_web.WebTests.test_origin)",
+      "reason": "Flask is not installed in this test environment"
+    },
+    {
+      "test": "test_page (test_web.WebTests.test_page)",
+      "reason": "Flask is not installed in this test environment"
+    },
+    {
+      "test": "test_sample_inspect_export (test_web.WebTests.test_sample_inspect_export)",
+      "reason": "Flask is not installed in this test environment"
+    },
+    {
+      "test": "test_unknown_path (test_web.WebTests.test_unknown_path)",
+      "reason": "Flask is not installed in this test environment"
+    }
+  ],
+  "failures": 0,
+  "errors": 0,
+  "scope": "Offline unit/integration tests. Provider network transports are mocked; no paid API requests."
+}

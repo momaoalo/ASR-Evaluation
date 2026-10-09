@@ -1,0 +1,311 @@
+{
+  "checks": [
+    {
+      "check": "all 12 actual report evaluations listed",
+      "passed": true
+    },
+    {
+      "check": "17 successful outputs",
+      "passed": true
+    },
+    {
+      "check": "3 evidenced audio inputs, not 6",
+      "passed": true
+    },
+    {
+      "check": "3 paired cases, not 0",
+      "passed": true
+    },
+    {
+      "check": "reference warning is visible",
+      "passed": true
+    },
+    {
+      "check": "both charts present",
+      "passed": true
+    },
+    {
+      "check": "no Active Run selector",
+      "passed": true
+    },
+    {
+      "check": "pinned reference remains exact",
+      "passed": true
+    },
+    {
+      "check": "same values in accessible data table",
+      "passed": true
+    },
+    {
+      "check": "historical unknown-setting failures still visible",
+      "passed": true
+    },
+    {
+      "check": "chart click opens its matching run",
+      "passed": true
+    },
+    {
+      "check": "chart keyboard inspection works",
+      "passed": true
+    },
+    {
+      "check": "zero values are visible, not treated as missing",
+      "passed": true
+    },
+    {
+      "check": "rates over 100 percent remain visible",
+      "passed": true
+    },
+    {
+      "check": "pair selection changes comparison only",
+      "passed": true
+    },
+    {
+      "check": "returning to live pair restores 3 cases",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens afa4db",
+      "passed": true
+    },
+    {
+      "check": "inspector opens afa4db",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed afa4db",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens 5e8da5",
+      "passed": true
+    },
+    {
+      "check": "inspector opens 5e8da5",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed 5e8da5",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens dab952",
+      "passed": true
+    },
+    {
+      "check": "inspector opens dab952",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed dab952",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens ccbdfe",
+      "passed": true
+    },
+    {
+      "check": "inspector opens ccbdfe",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed ccbdfe",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens 75b09a",
+      "passed": true
+    },
+    {
+      "check": "inspector opens 75b09a",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed 75b09a",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens a29c20",
+      "passed": true
+    },
+    {
+      "check": "inspector opens a29c20",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed a29c20",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens a5b77e",
+      "passed": true
+    },
+    {
+      "check": "inspector opens a5b77e",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed a5b77e",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens 1eb4ca",
+      "passed": true
+    },
+    {
+      "check": "inspector opens 1eb4ca",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed 1eb4ca",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens 03b7ae",
+      "passed": true
+    },
+    {
+      "check": "inspector opens 03b7ae",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed 03b7ae",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens 4c82a6",
+      "passed": true
+    },
+    {
+      "check": "inspector opens 4c82a6",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed 4c82a6",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens aba59d",
+      "passed": true
+    },
+    {
+      "check": "inspector opens aba59d",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed aba59d",
+      "passed": true
+    },
+    {
+      "check": "Saved run opens 7c991a",
+      "passed": true
+    },
+    {
+      "check": "inspector opens 7c991a",
+      "passed": true
+    },
+    {
+      "check": "original reference readable even if failed 7c991a",
+      "passed": true
+    },
+    {
+      "check": "no cleaning retains history",
+      "passed": true
+    },
+    {
+      "check": "search affects counts and list",
+      "passed": true
+    },
+    {
+      "check": "included sample prefilled",
+      "passed": true
+    },
+    {
+      "check": "switching source clears inherited reference",
+      "passed": true
+    },
+    {
+      "check": "reference confirmation reset",
+      "passed": true
+    },
+    {
+      "check": "changing URL invalidates confirmation",
+      "passed": true
+    },
+    {
+      "check": "supplied transcript fields visible",
+      "passed": true
+    },
+    {
+      "check": "API consent hidden in supplied mode",
+      "passed": true
+    },
+    {
+      "check": "problem reference panel opens",
+      "passed": true
+    },
+    {
+      "check": "explicit exclusion reduces only comparison, not history",
+      "passed": true
+    },
+    {
+      "check": "reset restores paired case",
+      "passed": true
+    },
+    {
+      "check": "corrected reference creates a new evaluation",
+      "passed": true
+    },
+    {
+      "check": "reference original in storage not overwritten",
+      "passed": true
+    },
+    {
+      "check": "no provider evaluate endpoint called",
+      "passed": true
+    },
+    {
+      "check": "mobile no document horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "dark theme applied",
+      "passed": true
+    },
+    {
+      "check": "offline report 12 evaluations",
+      "passed": true
+    },
+    {
+      "check": "offline review writes disabled",
+      "passed": true
+    },
+    {
+      "check": "offline inspector works",
+      "passed": true
+    },
+    {
+      "check": "offline two scoring views work",
+      "passed": true
+    },
+    {
+      "check": "offline CSV is backend-produced",
+      "passed": true
+    },
+    {
+      "check": "offline CSV download contains attempts and failures",
+      "passed": true
+    },
+    {
+      "check": "offline JSON download preserves 12 cases",
+      "passed": true
+    },
+    {
+      "check": "no page or transport exceptions",
+      "passed": true
+    }
+  ],
+  "passed": 76,
+  "errors": [],
+  "scope": "Playwright system Chromium, actual user-report records + actual Jinja/JS/CSS. HTTP transport injected to real Python storage/report/review functions. NOT real Flask routing or Windows. No ASR calls. Changes made only in temporary fixture storage."
+}
