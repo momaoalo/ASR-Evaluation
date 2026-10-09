@@ -51,8 +51,11 @@ jobs:
         shell: pwsh
         run: |
           .\.venv\Scripts\python.exe tools/repo_audit.py
+          if ($LASTEXITCODE -ne 0) { throw 'Tracked source audit failed.' }
           node --check static/js/app.js
+          if ($LASTEXITCODE -ne 0) { throw 'app.js syntax check failed.' }
           node --check static/js/charts.js
+          if ($LASTEXITCODE -ne 0) { throw 'charts.js syntax check failed.' }
       - name: Offline setup regression tests and UI integrity
         shell: pwsh
         run: |

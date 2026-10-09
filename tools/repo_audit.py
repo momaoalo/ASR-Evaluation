@@ -62,6 +62,7 @@ def main() -> int:
                 counts['python'] += 1
             except SyntaxError as exc:
                 errors.append(f'{name}: Python syntax error at line {exc.lineno}: {exc.msg}')
+    sys.path.insert(0, str(ROOT))
     from ui_integrity import verify_ui_files
     for issue in verify_ui_files(ROOT):
         errors.append('UI integrity: ' + issue)
