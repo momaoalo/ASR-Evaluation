@@ -2,6 +2,9 @@ name: Import verified source package
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".source-import/READY"
 
 permissions:
   contents: write
@@ -29,5 +32,5 @@ jobs:
             echo "Source package is already restored."
             exit 0
           fi
-          git commit -m "feat: restore original ASR Evaluator with English documentation"
+          git commit -m "feat: restore ASR Evaluation source package"
           git push origin HEAD:main
