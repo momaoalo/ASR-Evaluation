@@ -1,5 +1,7 @@
 @echo off
 setlocal
+set "NO_PAUSE=0"
+if /I "%~1"=="--ci" set "NO_PAUSE=1"
 cd /d "%~dp0"
 echo === ASR Evaluation - Windows setup ===
 echo Working folder: %CD%
@@ -29,9 +31,9 @@ where deno >nul 2>&1
 if errorlevel 1 echo YouTube reliability: consider installing Deno 2.3+ from https://deno.com/
 echo.
 echo Setup finished. Double-click START_WINDOWS.bat to launch.
-pause
+if "%NO_PAUSE%"=="0" pause
 exit /b 0
 :error
 echo Setup failed. Confirm Python 3.12+ is installed and review the error above.
-pause
+if "%NO_PAUSE%"=="0" pause
 exit /b 1
