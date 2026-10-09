@@ -18,6 +18,18 @@ uses Windows with Python 3.12 and performs the following on a fresh checkout:
 5. Verifies source/UI files and a local Flask `/api/build` response.
 
 The workflow is automatically executed on commits to `main`.
+
+**Observed full-suite Windows 3.12 baseline (9 October 2026):**
+
+| Result | Count |
+|---|---:|
+| Tests executed | 416 |
+| Passed | 412 |
+| Explicitly skipped (non-public original media fixture) | 4 |
+| Failures / errors | 0 |
+
+[GitHub Actions evidence for that execution](https://github.com/momaoalo/ASR-Evaluation/actions/runs/37874546133). The previously missing FFprobe executable was made visible to the test process, so its invalid-media check ran successfully. This is an offline/integration baseline, not a live provider benchmark.
+
 For current status and exact tests, consult [GitHub Actions](../../.github/workflows/windows-setup-smoke.yml)
 or the repository's Actions tab; **do not treat this document as a continuously
 updated pass/fail counter**.

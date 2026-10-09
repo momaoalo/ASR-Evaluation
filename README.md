@@ -7,6 +7,8 @@
 
 A local-first workbench for evaluating speech-to-text outputs against a reference, with explainable word/character errors, comparable model scorecards, and exportable results.
 
+[![Windows CI](https://github.com/momaoalo/ASR-Evaluation/actions/workflows/windows-setup-smoke.yml/badge.svg)](https://github.com/momaoalo/ASR-Evaluation/actions/workflows/windows-setup-smoke.yml)
+
 [**Quick start**](#quick-start) · [**Methodology**](#how-scoring-works) · [**Architecture**](docs/ARCHITECTURE.md) · [**Windows guide**](docs/WINDOWS_SETUP.md) · [**العربية**](README_AR.md)
 
 </div>
@@ -131,6 +133,7 @@ docs/ + verification/      Contracts and historical verification records
 <summary><strong>What has actually been verified?</strong></summary>
 
 - A [Windows Python 3.12 onboarding CI workflow](.github/workflows/windows-setup-smoke.yml) installs the project, checks portable media tools and source/UI integrity, runs the **full available offline unit/integration suite as a required check**, and exercises first-run flows with **mocked** provider responses.
+- **Public-clone Windows regression baseline (9 October 2026): 416 tests run, 412 passed and 4 explicitly skipped; 0 failures/errors.** The skipped tests require the non-redistributed original audio fixture. [Inspect the CI evidence](https://github.com/momaoalo/ASR-Evaluation/actions/runs/37874546133). These results do not include paid provider inference.
 - The first-run smoke tests verify that a supplied transcript can create saved scores and that a mocked API run is queued/saved without leaking a test credential.
 - A previous historical offline test run is documented separately in [verification evidence](docs/portfolio/VERIFICATION.md), with skipped tests and fixture requirements declared.
 - **Not verified by CI:** real paid provider credentials/endpoints, actual provider model accuracy, unrestricted YouTube downloads, or medical suitability.
