@@ -179,7 +179,16 @@ def create_app(settings=None, start_worker=True):
             if original.get('source', {}).get('type') != 'sample' and text_id(original.get('ground_truth')) == text_id(sample_reference) and original.get('reference_confirmed') is not True:
                 raise ValueError('The bundled reference is attached to another audio source. Check the match and explicitly confirm it (reference_confirmed=true).')
         # Missing credentials are a preflight error, never a falsely scored model.
-        credentials = s.credentials()
+        supplied = (raw_payload or {}).get('provider_credentials') or {}
+        if not isinstance(supplied, dict):
+            raise ValueError('Invalid provider credentials.')
+        allowed = ('humain_api_key', 'elevenlabs_api_key', 'humain_api_url')
+        if any(k not in allowed for k in supplied):
+            raise ValueError('Unsupported provider setting.')
+        if any(not isinstance(v, str) or len(v) > 2048 for v in supplied.values()):
+            raise ValueError('Invalid provider setting value.')
+        supplied = {k: v.strip() for k, v in supplied.items() if v.strip()}
+        credentials = {**s.credentials(), **supplied}
         if 'elevenlabs' in payload['models'] and not credentials.get('elevenlabs_api_key'):
             raise ValueError('ElevenLabs API key is not configured in the backend.')
         if 'humain' in payload['models']:
@@ -188,7 +197,7 @@ def create_app(settings=None, start_worker=True):
                 validate_connection(credentials)
             except Exception as exc:
                 raise ValueError(str(exc)) from None
-        job = jobs.create_job(payload)
+        job = jobs.create_job(payload, credentials=supplied)
         return jsonify(job), 202
 
     @app.get('/api/jobs')
