@@ -3,6 +3,8 @@ setlocal
 set "NO_PAUSE=0"
 if /I "%~1"=="--ci" set "NO_PAUSE=1"
 cd /d "%~dp0"
+rem Portable FFmpeg/Deno: never change global system PATH.
+set "PATH=%~dp0.tools\ffmpeg;%~dp0.tools\deno;%PATH%"
 echo === ASR Evaluation - Windows setup ===
 echo Working folder: %CD%
 if exist ".venv\Scripts\python.exe" goto install
@@ -24,11 +26,11 @@ echo.
 echo.
 echo Python dependencies installed in .venv. For live audio, FFmpeg and FFprobe must also be installed.
 where ffmpeg >nul 2>&1
-if errorlevel 1 echo Install FFmpeg: winget install -e --id Gyan.FFmpeg
+if errorlevel 1 echo FFmpeg missing. Run INSTALL_MEDIA_WINDOWS.bat ^(no winget required^).
 where ffprobe >nul 2>&1
 if errorlevel 1 echo FFprobe is also required. It comes with the FFmpeg installation.
 where deno >nul 2>&1
-if errorlevel 1 echo YouTube reliability: consider installing Deno 2.3+ from https://deno.com/
+if errorlevel 1 echo YouTube reliability: INSTALL_MEDIA_WINDOWS.bat also installs Deno.
 echo.
 echo Setup finished. Double-click START_WINDOWS.bat to launch.
 if "%NO_PAUSE%"=="0" pause
