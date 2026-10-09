@@ -113,7 +113,7 @@ For YouTube, **Deno 2.3+** is recommended by yt-dlp to process YouTube's JavaScr
 winget install -e --id DenoLand.Deno
 ```
 
-Close and reopen PowerShell after installing tools, then check them:
+After installing with **WinGet**, close and reopen PowerShell and check system commands:
 
 ```powershell
 ffmpeg -version
@@ -122,6 +122,8 @@ deno --version
 .\.venv\Scripts\python.exe -m yt_dlp --version
 .\.venv\Scripts\python.exe diagnose.py
 ```
+
+For the **portable installer**, run `.\\.tools\\ffmpeg\\ffmpeg.exe -version`, `.\\.tools\\ffmpeg\\ffprobe.exe -version`, and `.\\.tools\\deno\\deno.exe --version` directly. The app launch script sets the needed PATH automatically; `diagnose.py` also detects these local files.
 
 The app runs yt-dlp using the **same Python environment** as the server, so installing it with pip is enough; it does not require a separate global `yt-dlp.exe`. Some YouTube videos remain restricted or unavailable even with these tools. Use **Upload** for a local recording when downloading is not possible. Only download media you have permission to use.
 
