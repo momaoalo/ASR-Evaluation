@@ -1,0 +1,8 @@
+# Keep integrity-checked UI bytes identical on all operating systems.
+# Windows Git may otherwise convert LF to CRLF and break SHA-256 checks.
+/templates/index.html text eol=lf
+/templates/_workspace.html text eol=lf
+/static/js/app.js text eol=lf
+/static/js/charts.js text eol=lf
+/static/css/app.css text eol=lf
+/ui_manifest.json text eol=lf
