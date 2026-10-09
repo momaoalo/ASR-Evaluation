@@ -1,13 +1,12 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-set "PYEXE=%LOCALAPPDATA%\Programs\Python\Python312-arm64\python.exe"
-if exist "%PYEXE%" goto chosen
-set "PYEXE=%LOCALAPPDATA%\Programs\Python\Python312\python.exe"
-if exist "%PYEXE%" goto chosen
-set "PYEXE=python"
-:chosen
-"%PYEXE%" import_old_data.py
+rem Legacy one-time old-data import; not needed for a new GitHub clone.
+if exist ".venv\Scripts\python.exe" (
+  ".venv\Scripts\python.exe" import_old_data.py
+) else (
+  py -3 import_old_data.py
+)
 set "RC=%ERRORLEVEL%"
 pause
 exit /b %RC%

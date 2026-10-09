@@ -132,6 +132,8 @@ def install(source, destination, check_port=True):
 
 
 def main():
+    if (ROOT / '.git').exists():
+        raise ValueError('GitHub clone detected: run git pull --ff-only and SETUP_WINDOWS.bat instead. This updater is only for the archived full ZIP release.')
     print('ASR Evaluator - synchronized Dashboard 1.6.2 update')
     print('Preserves config.py, config.local.json, .env and every file under data/.')
     print('Run this from the newly extracted release OUTSIDE the old project.')

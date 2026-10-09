@@ -23,6 +23,8 @@ cd .\ASR-Evaluation
 .\SETUP_WINDOWS.bat
 ```
 
+VS Code users: the committed `.vscode/settings.json` selects the project `.venv` rather than a specific developer's Python installation.
+
 The setup creates a local `.venv`, installs `requirements.txt` (including Waitress, HUMAIN Voice SDK and yt-dlp), and runs the offline diagnostics. The launcher always uses this venv; you do not need `Activate.ps1` or changes to PowerShell execution policy.
 
 ### Media tools
@@ -68,7 +70,7 @@ git pull --ff-only
 .\START_WINDOWS.bat
 ```
 
-Use the actual clone path; yours may have another folder name. If another copy already serves port 5000, close that process before starting this one.
+Use the actual clone path; yours may have another folder name. If another copy already serves port 5000, close that process before starting this one. **Do not run `UPDATE_EXISTING.bat` in a GitHub clone**: that script targets an archived ZIP release and has deliberately been guarded against Git checkouts.
 
 ## Check installation
 

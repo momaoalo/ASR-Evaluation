@@ -1,5 +1,5 @@
 {
-  "python.defaultInterpreterPath": "${env:LOCALAPPDATA}\\Programs\\Python\\Python312-arm64\\python.exe",
+  "python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
   "files.exclude": {
     "**/__pycache__": true
   },

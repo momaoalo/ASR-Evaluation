@@ -62,6 +62,8 @@ For today's public Git checkout:
 .\.venv\Scripts\python.exe -m unittest discover -s tests -p test_youtube_setup.py -v
 ```
 
+The full `run_tests.py` suite is also exercised on Windows, with historical media-dependent tests explicitly skipped when the original recording is unavailable. The public checkout must not use invented media as evidence of successful audio conversion.
+
 The full legacy `run_tests.py` suite may need the original separately
 distributed media fixture; don't represent missing-fixture errors as provider
 regressions or the focused CI checks as a full-suite pass.
