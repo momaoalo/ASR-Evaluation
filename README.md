@@ -140,7 +140,7 @@ Install FFmpeg and, for YouTube, a supported JavaScript runtime (Deno recommende
 - `yt-dlp was not found`: pull the updated repository and run **`SETUP_WINDOWS.bat`**; `yt-dlp[default]` is now installed in the venv. If YouTube still fails, verify Deno and try Upload.
 - `FFmpeg/FFprobe is not installed`: install FFmpeg (including FFprobe) and reopen the shell.
 - `Incomplete application files`: run `git status` and `git pull --ff-only` on a clean checkout. The tracked `.gitattributes` forces LF for checksum-protected UI files; do not regenerate the manifest unless you've intentionally changed the UI.
-- The legacy `verify_package.py` checks an **old full-release ZIP snapshot**, including nonpublic media. It is **not** a validity test for a Git checkout after source-code changes. Check **`/api/build`** and **`diagnose.py`** instead.
+- Run **`.\\.venv\\Scripts\\python.exe verify_package.py`** to check the current Git checkout's required files and UI hashes. Use `--full-release` only for the historical complete ZIP, whose original checksums and private media are not expected in this repository.
 - A saved **`supplied`** run does not prove an API key was used. Check run provenance for **`live`** before claiming real provider benchmarking.
 
 ```powershell
