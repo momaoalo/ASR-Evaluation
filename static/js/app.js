@@ -630,7 +630,12 @@
                 models.push('humain');
             if ($('selectEleven').checked)
                 models.push('elevenlabs');
-            const j = await api('/api/evaluate', { method: 'POST', body: { name: cases.length === 1 ? cases[0].title : `Batch · ${cases.length} clips`, cases, models, profile: profile(), score_view: selectedScoreView(), consent: $('consent').checked, reuse_cache: $('reuseCache').checked } });
+            const providerCredentials = {};
+            if ($('humainApiKey').value.trim()) providerCredentials.humain_api_key = $('humainApiKey').value.trim();
+            if ($('humainApiUrl').value.trim()) providerCredentials.humain_api_url = $('humainApiUrl').value.trim();
+            if ($('elevenApiKey').value.trim()) providerCredentials.elevenlabs_api_key = $('elevenApiKey').value.trim();
+            const j = await api('/api/evaluate', { method: 'POST', body: { provider_credentials: providerCredentials, name: cases.length === 1 ? cases[0].title : `Batch · ${cases.length} clips`, cases, models, profile: profile(), score_view: selectedScoreView(), consent: $('consent').checked, reuse_cache: $('reuseCache').checked } });
+            $('humainApiKey').value = ''; $('elevenApiKey').value = '';
             await followSubmittedRun(j, selectedScoreView());
         }
         catch (e) {
