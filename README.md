@@ -56,65 +56,99 @@ The two provider branches represent separate adapters, **not concurrent inferenc
 
 ## Quick start
 
-### 1. Clone and install
+### Windows (PowerShell) — recommended
 
-Python **3.12** is the original recommended version. Keep the repository structure intact: application templates and scripts are protected by an integrity manifest.
+Use **Python 3.12** when available; the Windows setup script can also use another installed Python 3 version. **Do not clone or run the project from `C:\Windows\System32`**. Run these commands in a normal PowerShell window:
+
+```powershell
+cd "$env:USERPROFILE\Documents"
+git clone https://github.com/momaoalo/ASR-Evaluation.git
+cd .\ASR-Evaluation
+.\SETUP_WINDOWS.bat
+.\START_WINDOWS.bat
+```
+
+The setup script creates **`.venv` inside the repository** and installs all Python packages (including Waitress, HUMAIN Voice and **`yt-dlp[default]`**). It does not install system tools or alter your global Python. The start script consistently uses **`.venv\Scripts\python.exe`**; no PowerShell execution-policy change or environment activation is required.
+
+If you previously cloned this project, for example as **`ASR-Evaluation-Test`**, update and reinstall its Python dependencies after pulling new changes:
+
+```powershell
+cd "$env:USERPROFILE\Documents\ASR-Evaluation-Test"
+git pull --ff-only
+.\SETUP_WINDOWS.bat
+.\START_WINDOWS.bat
+```
+
+If you prefer manual commands, use the venv's Python explicitly:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe diagnose.py
+.\.venv\Scripts\python.exe run_local.py
+```
+
+Open <http://127.0.0.1:5000> (the launcher also attempts to open your browser). Keep the PowerShell window open while using the app. If another ASR process is already on port 5000, stop that one with **Ctrl+C** before starting a different clone.
+
+### Extra tools for real audio and YouTube
+
+Python packages alone are **not sufficient** to convert audio. For live ASR via Upload or YouTube, install **FFmpeg/FFprobe** using Windows Package Manager:
+
+```powershell
+winget install -e --id Gyan.FFmpeg
+```
+
+For YouTube, **Deno 2.3+** is recommended by yt-dlp to process YouTube's JavaScript challenges:
+
+```powershell
+winget install -e --id DenoLand.Deno
+```
+
+Close and reopen PowerShell after installing tools, then check them:
+
+```powershell
+ffmpeg -version
+ffprobe -version
+deno --version
+.\.venv\Scripts\python.exe -m yt_dlp --version
+.\.venv\Scripts\python.exe diagnose.py
+```
+
+The app runs yt-dlp using the **same Python environment** as the server, so installing it with pip is enough; it does not require a separate global `yt-dlp.exe`. Some YouTube videos remain restricted or unavailable even with these tools. Use **Upload** for a local recording when downloading is not possible. Only download media you have permission to use.
+
+### Demo vs. live ASR (important)
+
+- **View sample results / Supplied transcripts:** compares previously provided transcript texts **locally**. **No API request**, no new provider result, no billable usage. The first historical example transcript has **unverified model identity**; it is **not** a HUMAIN result. This public GitHub checkout **does not include** the original `examples/doctor_clip.mp3` media fixture.
+- **Live comparison:** choose **Upload** or **YouTube URL**, provide a reviewed Ground Truth for that exact audio, select HUMAIN Voice and/or ElevenLabs, and open **Model connections** to enter your own API keys. HUMAIN also needs your account's correct API endpoint. Disable **Use supplied transcripts**. Check consent before running: audio will be sent to the selected providers and may incur charges.
+
+The ElevenLabs endpoint is fixed by its adapter. API keys entered in the interface are used for the active run; do not share or commit real keys. A provider can fail even with configured keys if account access, endpoint or quota is unavailable. Failed calls are shown as failures, **not zero WER**.
+
+### macOS / Linux
 
 ```bash
 git clone https://github.com/momaoalo/ASR-Evaluation.git
 cd ASR-Evaluation
-python -m venv .venv
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python run_local.py
 ```
 
-Activate the environment:
+Install FFmpeg and, for YouTube, a supported JavaScript runtime (Deno recommended) using your OS package manager. The application listens on loopback only.
 
-```bash
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
+### Checks and troubleshooting
 
-# macOS / Linux
-source .venv/bin/activate
+- `No module named 'waitress'`: you ran a Python interpreter without project dependencies. Use **`.venv\Scripts\python.exe`** or rerun `SETUP_WINDOWS.bat`.
+- `yt-dlp was not found`: pull the updated repository and run **`SETUP_WINDOWS.bat`**; `yt-dlp[default]` is now installed in the venv. If YouTube still fails, verify Deno and try Upload.
+- `FFmpeg/FFprobe is not installed`: install FFmpeg (including FFprobe) and reopen the shell.
+- `Incomplete application files`: run `git status` and `git pull --ff-only` on a clean checkout. The tracked `.gitattributes` forces LF for checksum-protected UI files; do not regenerate the manifest unless you've intentionally changed the UI.
+- The legacy `verify_package.py` checks an **old full-release ZIP snapshot**, including nonpublic media. It is **not** a validity test for a Git checkout after source-code changes. Check **`/api/build`** and **`diagnose.py`** instead.
+- A saved **`supplied`** run does not prove an API key was used. Check run provenance for **`live`** before claiming real provider benchmarking.
+
+```powershell
+.\.venv\Scripts\python.exe diagnose.py
+.\.venv\Scripts\python.exe -c "from ui_integrity import verify_ui_files; from pathlib import Path; print(verify_ui_files(Path.cwd()))"
 ```
 
-Install the original dependencies:
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-For a local transcript-scoring setup without the optional HUMAIN SDK, use the additional minimal requirements file:
-
-```bash
-python -m pip install -r requirements-offline.txt
-```
-
-No GPU or local model weights are required: live ASR uses provider APIs; supplied-transcript evaluation runs locally.
-
-### 2. Start the application
-
-```bash
-python run_local.py
-```
-
-Open **http://127.0.0.1:5000**. The launcher uses Waitress and opens the browser. Existing Windows shortcuts, including `SETUP_WINDOWS.bat` and `START_WINDOWS.bat`, are preserved.
-
-### 3. Try scoring without API keys
-
-Use the application's supplied-transcript workflow or its saved sample transcripts. Provide a reference and candidate transcripts, then inspect the raw/cleaning views and individual edits. This path does **not** call a provider.
-
-A separate synthetic English example is available under [`examples/portfolio`](examples/portfolio/README.md). Its candidate outputs are deliberately authored examples, **not recorded results from real ASR models**.
-
-**Sample audio:** the original `examples/doctor_clip.mp3` is a separate media fixture. Transcript-only scoring does not need it; playback, processing the pinned sample, and some original regression tests do. See [media and sample provenance](docs/portfolio/DATA_AND_PROVENANCE.md) before running those paths. The full local delivery bundle retains this original fixture.
-
-### 4. Enable live ASR only when needed
-
-Copy `.env.example` to `.env`, then configure your own provider credentials and account endpoint. Never paste real keys into repository files or commit local configuration.
-
-The original HUMAIN adapter selects its model from the language mode: Arabic, English, or mixed. Merely setting `HUMAIN_MODEL` in the example file does not override that adapter mapping. See [`docs/portfolio/CONFIGURATION.md`](docs/portfolio/CONFIGURATION.md).
-
-Live processing requires **FFmpeg / FFprobe**. YouTube acquisition additionally uses **yt-dlp** and its supported JavaScript runtime configuration. These programs are separate from the original Python requirements.
-
-A live request sends audio to the selected provider and may use account credits. Reference text is used for scoring, not as a hint sent to the ASR service.
+An empty list `[]` means the checked UI files match the manifest. Diagnostics do not make paid API requests. Some historical regression tests require the separately distributed audio fixture; do not interpret their missing-file failures as ASR inference failures.
 
 ## Evaluation methodology
 
