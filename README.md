@@ -50,7 +50,7 @@ flowchart LR
     G --> H[Saved runs and comparison reports]
 ```
 
-Provider requests are **sequential**, not parallel. Imported transcripts follow a separate path and must **never** be interpreted as new API results. This distinction is displayed in the interface and saved provenance.
+The HUMAIN adapter uses the SDK's **FastTranscriptionClient**, intended for completed, latency-sensitive short audio units; it is not a generic long-meeting batch API. Upload/clip length is also restricted by application settings. Provider requests are **sequential**, not parallel. Imported transcripts follow a separate path and must **never** be interpreted as new API results. This distinction is displayed in the interface and saved provenance.
 
 ## Quick start
 

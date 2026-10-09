@@ -1,9 +1,11 @@
 # Technical sources
 
-Reviewed for this implementation: 16 September 2026. These are provider/library contracts, not evidence of a successful live request with your account.
+Provider documentation cross-checked on 9 October 2026 for the pinned adapters. These are public API contracts, **not** evidence of a successful live request with a user's account.
 
 - HUMAIN official Python SDK 0.18.0: https://pypi.org/project/humain-voice/0.18.0/
   `humain_voice.stt.FastTranscriptionClient`, account API URL/key, optional Socket.IO path, `Language.ArEn`, `ASRModel.BayanArEn`. The unversioned model is an alias and can change; record the constant/resolved value and date.
+- HUMAIN official Python SDK guide: https://docs.voice.humain.com/en/sdk/python
+- HUMAIN model constants and Fast-vs-Batch constraints: https://docs.voice.humain.com/en/models
 - HUMAIN developer entry: https://voice.humain.com/
 - ElevenLabs Create transcript: https://elevenlabs.io/docs/api-reference/speech-to-text/convert
   HTTPS multipart POST `/v1/speech-to-text`, `model_id=scribe_v2`, `xi-api-key`. No reference hints/keyterms are sent.

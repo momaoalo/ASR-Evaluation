@@ -23,7 +23,7 @@ HUMAIN's original SDK mapping:
 | English | `En` | `FastEn` |
 | Mixed | `ArEn` | `BayanArEn` |
 
-The original adapter does not use `HUMAIN_MODEL` as a user override. ElevenLabs uses its Scribe v2 integration.
+The adapter selects one of those SDK constants based on language. Setting `HUMAIN_MODEL` in the environment has no effect. The public `.env.example` omits that unused variable. HUMAIN FastTranscriptionClient targets short complete audio units; use an appropriate Batch client in future work if targeting longer recordings. ElevenLabs uses its Scribe v2 integration.
 
 ## Python environment and media dependencies
 

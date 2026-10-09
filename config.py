@@ -10,9 +10,9 @@ load_dotenv(BASE_DIR / '.env')
 VERSION = '1.6.1'
 SCHEMA_VERSION = 1
 
-# Optional local backend credentials. Paste keys here once if you prefer not to use .env.
-# Do not commit/share real keys with a submitted project. Existing .env/config.local.json
-# values remain supported as a compatibility fallback.
+# Legacy optional constants retained for backward compatibility.
+# Prefer private .env / config.local.json, or the UI's per-run Model connections.
+# Never place real API keys in tracked source code.
 HUMAIN_API_KEY = ""
 ELEVENLABS_API_KEY = ""
 HUMAIN_API_URL = "https://api.voice.humain.com"
