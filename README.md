@@ -1,64 +1,62 @@
 <div align="center">
 
 # ASR Evaluation
-### Compare transcripts. Understand errors. Trace every score.
+### Measure transcription quality. Inspect errors. Compare like-for-like.
 
-**Python · Flask · WER / CER · Arabic / English / Mixed-language text**
+**Python · Flask · Speech-to-Text Evaluation · WER / CER · Arabic / English**
 
-A local-first evaluation workspace for speech-to-text systems, combining reproducible scoring, error alignment, model comparisons, and portable reports.
+A local-first workbench for evaluating speech-to-text outputs against a reference, with explainable word/character errors, comparable model scorecards, and exportable results.
 
-[Quick start](#quick-start) · [How it works](#how-it-works) · [Technical architecture](docs/ARCHITECTURE.md) · [Methodology](#evaluation-methodology) · [Verification](docs/portfolio/VERIFICATION.md)
+[**Quick start**](#quick-start) · [**Methodology**](#how-scoring-works) · [**Architecture**](docs/ARCHITECTURE.md) · [**Windows guide**](docs/WINDOWS_SETUP.md) · [**العربية**](README_AR.md)
 
 </div>
 
 ---
 
-![Original ASR Evaluator interface showing a synthetic text-only comparison](docs/assets/synthetic-dashboard.jpg)
+![ASR Evaluation dashboard with illustrative synthetic transcripts](docs/assets/synthetic-dashboard.jpg)
 
-*Actual exported-report interface, populated with explicitly synthetic English examples. Demo A and Demo B are authored candidate texts, not real model results. [Inspect the example](examples/portfolio/README.md).* 
+*Example exported dashboard with **synthetic English transcripts**. The displayed scores are for demonstration only, **not** measured HUMAIN or ElevenLabs accuracy. [Inspect the example data](examples/portfolio/README.md).*
 
-## What this project does
+## The problem and approach
 
-ASR Evaluation brings the steps around speech recognition into one inspectable workflow: prepare an audio input, obtain or import transcripts, compare them with a reviewed reference, analyze the differences, and save the evidence behind the result.
+Speech recognition output needs more than a single accuracy percentage. A trustworthy comparison requires the **same audio**, a reviewed **reference transcript**, a documented **normalization policy**, and explicit treatment of **failed calls and repeated runs**.
 
-It is an **evaluation tool**, not a speech-recognition model or a clinical decision system. The original application source comes from **ASR Evaluator Dashboard 1.6.2**. This portfolio packaging preserves its implementation rather than replacing it with a smaller WER calculator.
+This project brings those steps into one local application. It is an **ASR evaluation tool**, not a trained ASR model, a speech recognizer of its own, or a medical/clinical validation system.
 
-| Capability | Implemented behavior |
+### What it implements
+
+| Area | Implementation |
 |---|---|
-| Input workflows | Local audio, YouTube URLs, batch manifests, and supplied transcripts |
-| Provider adapters | HUMAIN Voice SDK and ElevenLabs speech-to-text API |
-| Two scoring views | Original raw-baseline policy and normalized/cleaning policy |
-| Error analysis | Independent word/character alignments, substitutions, deletions, insertions, and source spans |
-| Comparison dashboard | Shared-case comparisons, macro averages, corpus metrics, per-case inspectors, and saved runs |
-| Reference review | Confirm, exclude, or explicitly correct a reference and re-score saved text without another ASR request |
-| Portable reports | Self-contained HTML snapshots, JSON exports, and CSV tables |
-| Traceability | Input fingerprints, normalization policies, provider configuration, errors, and run metadata |
+| Audio inputs | Local uploads, YouTube links (subject to availability), and JSON batch manifests |
+| ASR integrations | HUMAIN Voice via its Python SDK; ElevenLabs Scribe v2 via API |
+| Text-only analysis | Score imported or example transcripts **without** calling a provider |
+| Error analysis | Word Error Rate (WER), Character Error Rate (CER), word substitutions / deletions / insertions, and positional alignments |
+| Arabic-aware comparisons | Configurable text normalization and clearly separated **Cleaning / No cleaning** views |
+| Fairer comparisons | Shared successful test cases, per-case metrics, macro averages, corpus-weighted metrics; unsuccessful runs remain failures |
+| Traceability | Original transcripts, model settings, audio fingerprints, cached/live provenance, and persisted run outcomes |
+| Review and reports | Reference review/re-scoring, interactive saved runs, portable HTML, JSON, and CSV exports |
 
-## How it works
+## Evaluation workflow
 
 ```mermaid
-flowchart TD
-    A[Audio file / YouTube URL / batch manifest] --> B[Inspect, crop and standardize audio]
-    B --> C[HUMAIN Voice adapter]
-    B --> D[ElevenLabs adapter]
-    C --> E[Preserve provider response and transcript]
-    D --> E
-    F[Supplied transcripts: no provider calls] --> E
-    G[Reviewed reference transcript] --> H[Apply the same normalization policy]
-    E --> H
-    H --> I[WER / CER and positional error alignment]
-    I --> J[Save JSON results and provenance]
-    J --> K[Shared-case comparison dashboard]
-    K --> L[HTML / JSON / CSV exports]
+flowchart LR
+    A[Audio upload or YouTube] --> B[Inspect and prepare audio]
+    B --> C[HUMAIN or ElevenLabs API]
+    C --> E[Recorded candidate transcript]
+    D[Imported candidate transcript] --> E
+    R[Reviewed reference transcript] --> F[Apply declared scoring policy]
+    E --> F
+    F --> G[WER / CER + error alignment]
+    G --> H[Saved runs and comparison reports]
 ```
 
-The two provider branches represent separate adapters, **not concurrent inference**. The original worker processes cases and providers sequentially. Raw text is retained; normalization does not rewrite the underlying provider response.
+Provider requests are **sequential**, not parallel. Imported transcripts follow a separate path and must **never** be interpreted as new API results. This distinction is displayed in the interface and saved provenance.
 
 ## Quick start
 
-### Windows (PowerShell) — recommended
+### Windows
 
-Use **Python 3.12** when available; the Windows setup script can also use another installed Python 3 version. **Do not clone or run the project from `C:\Windows\System32`**. Run these commands in a normal PowerShell window:
+Install [Python 3.12](https://www.python.org/downloads/), Git, and then in **PowerShell**:
 
 ```powershell
 cd "$env:USERPROFILE\Documents"
@@ -68,71 +66,16 @@ cd .\ASR-Evaluation
 .\START_WINDOWS.bat
 ```
 
-The setup script creates **`.venv` inside the repository** and installs all Python packages (including Waitress, HUMAIN Voice and **`yt-dlp[default]`**). It does not install system tools or alter your global Python. The start script consistently uses **`.venv\Scripts\python.exe`**; no PowerShell execution-policy change or environment activation is required.
+The launcher uses a project-local `.venv`. Open **http://127.0.0.1:5000**. You do not need to activate Python manually.
 
-If you previously cloned this project, for example as **`ASR-Evaluation-Test`**, update and reinstall its Python dependencies after pulling new changes:
-
-```powershell
-cd "$env:USERPROFILE\Documents\ASR-Evaluation-Test"
-git pull --ff-only
-.\SETUP_WINDOWS.bat
-.\START_WINDOWS.bat
-```
-
-If you prefer manual commands, use the venv's Python explicitly:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe diagnose.py
-.\.venv\Scripts\python.exe run_local.py
-```
-
-Open <http://127.0.0.1:5000> (the launcher also attempts to open your browser). Keep the PowerShell window open while using the app. If another ASR process is already on port 5000, stop that one with **Ctrl+C** before starting a different clone.
-
-### Extra tools for real audio and YouTube
-
-**WinGet alternative (including error `0x80073cfc`):** run the included portable media installer instead of WinGet:
+**For live audio**, install FFmpeg and FFprobe. The repository includes a portable installer that also sets up Deno for YouTube use **without WinGet**:
 
 ```powershell
 .\INSTALL_MEDIA_WINDOWS.bat
+.\START_WINDOWS.bat
 ```
 
-This downloads the [FFmpeg Essentials Windows build](https://www.gyan.dev/ffmpeg/builds/) and [Deno's Windows release](https://github.com/denoland/deno/releases) from their official distributions, verifies published SHA-256 checksums, and installs them under the ignored project-local `.tools/` directory. No administrator privileges, global PATH changes, or separate package manager required. The project launcher finds these tools automatically. You can review `INSTALL_MEDIA_WINDOWS.ps1` before running it. To install FFmpeg without optional Deno, run `powershell -NoProfile -ExecutionPolicy Bypass -File .\INSTALL_MEDIA_WINDOWS.ps1 -SkipDeno`.
-
-If you want to repair WinGet on Windows 11, Microsoft's documented command is `Get-AppxPackage Microsoft.DesktopAppInstaller | Reset-AppxPackage`, followed by `winget source update`.
-
-Python packages alone are **not sufficient** to convert audio. For live ASR via Upload or YouTube, install **FFmpeg/FFprobe** using Windows Package Manager:
-
-```powershell
-winget install -e --id Gyan.FFmpeg
-```
-
-For YouTube, **Deno 2.3+** is recommended by yt-dlp to process YouTube's JavaScript challenges:
-
-```powershell
-winget install -e --id DenoLand.Deno
-```
-
-After installing with **WinGet**, close and reopen PowerShell and check system commands:
-
-```powershell
-ffmpeg -version
-ffprobe -version
-deno --version
-.\.venv\Scripts\python.exe -m yt_dlp --version
-.\.venv\Scripts\python.exe diagnose.py
-```
-
-For the **portable installer**, run `.\\.tools\\ffmpeg\\ffmpeg.exe -version`, `.\\.tools\\ffmpeg\\ffprobe.exe -version`, and `.\\.tools\\deno\\deno.exe --version` directly. The app launch script sets the needed PATH automatically; `diagnose.py` also detects these local files.
-
-The app runs yt-dlp using the **same Python environment** as the server, so installing it with pip is enough; it does not require a separate global `yt-dlp.exe`. Some YouTube videos remain restricted or unavailable even with these tools. Use **Upload** for a local recording when downloading is not possible. Only download media you have permission to use.
-
-### Demo vs. live ASR (important)
-
-- **View sample results / Supplied transcripts:** compares previously provided transcript texts **locally**. **No API request**, no new provider result, no billable usage. The first historical example transcript has **unverified model identity**; it is **not** a HUMAIN result. This public GitHub checkout **does not include** the original `examples/doctor_clip.mp3` media fixture.
-- **Live comparison:** choose **Upload** or **YouTube URL**, provide a reviewed Ground Truth for that exact audio, select HUMAIN Voice and/or ElevenLabs, and open **Model connections** to enter your own API keys. HUMAIN also needs your account's correct API endpoint. Disable **Use supplied transcripts**. Check consent before running: audio will be sent to the selected providers and may incur charges.
-
-The ElevenLabs endpoint is fixed by its adapter. API keys entered in the interface are used for the active run; do not share or commit real keys. A provider can fail even with configured keys if account access, endpoint or quota is unavailable. Failed calls are shown as failures, **not zero WER**.
+If you have an existing clone, use `git pull --ff-only` followed by `SETUP_WINDOWS.bat`. For errors such as missing `waitress`, `yt-dlp`, FFmpeg, or broken WinGet (`0x80073cfc`), see the **[step-by-step Windows setup and troubleshooting guide](docs/WINDOWS_SETUP.md)**.
 
 ### macOS / Linux
 
@@ -144,116 +87,60 @@ python3 -m venv .venv
 .venv/bin/python run_local.py
 ```
 
-Install FFmpeg and, for YouTube, a supported JavaScript runtime (Deno recommended) using your OS package manager. The application listens on loopback only.
+Install FFmpeg/FFprobe with your system package manager for live audio; a supported JavaScript runtime is recommended for YouTube acquisition. The web server is deliberately bound to loopback.
 
-### Checks and troubleshooting
+## Try it
 
-- `No module named 'waitress'`: you ran a Python interpreter without project dependencies. Use **`.venv\Scripts\python.exe`** or rerun `SETUP_WINDOWS.bat`.
-- `yt-dlp was not found`: pull the updated repository and run **`SETUP_WINDOWS.bat`**; `yt-dlp[default]` is now installed in the venv. If YouTube still fails, verify Deno and try Upload.
-- `FFmpeg/FFprobe is not installed`: install FFmpeg (including FFprobe) and reopen the shell.
-- `Incomplete application files`: run `git status` and `git pull --ff-only` on a clean checkout. The tracked `.gitattributes` forces LF for checksum-protected UI files; do not regenerate the manifest unless you've intentionally changed the UI.
-- Run **`.\\.venv\\Scripts\\python.exe verify_package.py`** to check the current Git checkout's required files and UI hashes. Use `--full-release` only for the historical complete ZIP, whose original checksums and private media are not expected in this repository.
-- A saved **`supplied`** run does not prove an API key was used. Check run provenance for **`live`** before claiming real provider benchmarking.
+**No API key:** use **New evaluation → Saved text demo → View sample results**, or import your own two transcripts. The bundled Arabic transcripts are historical supplied text. The first candidate's actual underlying model is **unknown**; it is **not** attributed to HUMAIN. The public repository does **not** include the original sample MP3.
 
-```powershell
-.\.venv\Scripts\python.exe diagnose.py
-.\.venv\Scripts\python.exe -c "from ui_integrity import verify_ui_files; from pathlib import Path; print(verify_ui_files(Path.cwd()))"
-```
+**Actual API evaluation:** choose **New evaluation → Upload** (or YouTube URL), supply and confirm Ground Truth for that exact recording, select HUMAIN Voice and/or ElevenLabs, open **Model connections**, and provide your own keys. HUMAIN needs an account-specific API endpoint. Make sure **Use supplied transcripts** is off and confirm the provider-consent checkbox.
 
-An empty list `[]` means the checked UI files match the manifest. Diagnostics do not make paid API requests. Some historical regression tests require the separately distributed audio fixture; do not interpret their missing-file failures as ASR inference failures.
+Provider access, billing and compatibility cannot be proven by mock tests. A live evaluation may consume credits. You can select a single provider while configuring the other. **No credentials or user recordings are included in this repository.**
 
-## Evaluation methodology
+## How scoring works
 
-### Word and character error rates
-
-For a nonempty reference:
+For each reference and hypothesis:
 
 ```text
-WER = (word substitutions + word deletions + word insertions) / reference words
-CER = character edit count / reference characters
+WER = (word substitutions + deletions + insertions) / reference word count
+CER = character edit distance / reference character count
 ```
 
-The implementation uses **JiWER**, with an explicitly identified **RapidFuzz fallback** when JiWER is unavailable. Engine information is recorded in results.
+- **Cleaning** applies the same declared normalization policy to reference and candidate; **No cleaning** retains a separately documented raw-baseline preparation. Neither changes the original saved provider response.
+- **Average** is the unweighted mean across cases; **Corpus** divides summed edits by summed reference units. They can differ substantially.
+- **Paired comparisons** use matching inputs/references/configuration where **both** selected models succeeded. Failed outputs are not scored as 0% WER, and duplicate attempts do not get extra weighting.
+- A low WER/CER does **not** establish semantic or clinical accuracy or general superiority of any provider.
 
-Words are whitespace-delimited. Characters are Unicode code points; whether spaces count is a saved policy setting. Rates can exceed 100% and are not clamped. Technical failures remain failures, not invented zero-error results.
+See [normalization](docs/NORMALIZATION_POLICY.md), [dashboard metrics](docs/DASHBOARD_1_6_2.md), and [data provenance](docs/portfolio/DATA_AND_PROVENANCE.md) for definitions and limitations.
 
-### Raw does not mean unprocessed bytes
-
-The original raw baseline performs declared formatting/whitespace preparation. The cleaning view additionally applies the saved normalization policy to both reference and prediction. The application retains original text and a change log.
-
-Custom spelling equivalences produce **policy-specific** scores. They are not interchangeable with literal-spelling WER. A lower score after cleaning is not evidence that the ASR model itself improved.
-
-### Average versus corpus results
-
-- **Average WER/CER:** arithmetic mean of per-case rates on the selected shared subset.
-- **Corpus WER/CER:** total edits divided by total reference units on that subset.
-
-For example, one error in a 10-word case and 50 errors in a 100-word case produce **30% average WER** but **46.36% corpus WER**. Both values are meaningful; they answer different questions.
-
-Provider comparisons use common successful cases with compatible reference/scoring settings. A missing comparison is displayed as unavailable, not perfect performance. See [`docs/DASHBOARD_1_6_2.md`](docs/DASHBOARD_1_6_2.md) for the original scorecard definitions.
-
-## Repository map
+## Implementation and verification
 
 ```text
-ASR-Evaluation/
-├── app.py                   Local Flask routes and request boundary
-├── run_local.py             Waitress launcher and UI consistency checks
-├── pipeline.py              Validation and per-case orchestration
-├── jobs.py                  Persistent job queue and worker
-├── config.py                Local application settings
-├── services/                Audio acquisition / preparation / provider adapters
-├── evaluation/              Normalization, alignment, metrics and aggregation
-├── storage.py               JSON persistence and result indexing
-├── reporting.py             Standalone HTML, JSON and CSV reporting
-├── reporting_review.py      Explicit reference review and local re-scoring
-├── templates/               Original English application templates
-├── static/                  Original CSS, JavaScript and native SVG charts
-├── examples/                Original sample metadata and additional synthetic examples
-├── tests/                   Original regression suite
-├── docs/                    Architecture, policies, function map and portfolio notes
-├── tools/                   UI-manifest tooling and source verification
-└── verification/            Clearly dated historical and migration evidence
+app.py + run_local.py       Flask API and local server
+pipeline.py + jobs.py       Request validation, sequential jobs, and checkpoints
+services/                  Media acquisition, conversion, provider adapters
+evaluation/                Text normalization, edit alignments, WER/CER, aggregation
+storage.py                 Atomic JSON persistence
+reporting*.py              Results, review and exports
+templates/ + static/       Web UI and visualizations
+tests/                     Unit/integration and offline provider-mock tests
+docs/ + verification/      Contracts and historical verification records
 ```
 
-The original Arabic setup notes are retained as legacy material. The main README and portfolio documentation are in English. Arabic sample text is intentionally not translated because changing a reference would change the evaluation.
+<details>
+<summary><strong>What has actually been verified?</strong></summary>
 
-## Verification status
+- A [Windows Python 3.12 onboarding CI workflow](.github/workflows/windows-setup-smoke.yml) installs the project, checks portable media tools and source/UI integrity, and exercises first-run flows with **mocked** provider responses.
+- The first-run smoke tests verify that a supplied transcript can create saved scores and that a mocked API run is queued/saved without leaking a test credential.
+- A previous historical offline test run is documented separately in [verification evidence](docs/portfolio/VERIFICATION.md), with skipped tests and fixture requirements declared.
+- **Not verified by CI:** real paid provider credentials/endpoints, actual provider model accuracy, unrestricted YouTube downloads, or medical suitability.
 
-The recovered package passed its original **SHA-256 package verification** before changes to packaging. A fresh offline run on 4 October 2026 discovered **407 tests: 372 passed, 35 skipped, 0 failures, 0 errors**.
+</details>
 
-The skipped tests require unavailable Flask or JiWER installations. Scoring tests used the implementation's existing RapidFuzz fallback. The environment could not install the missing packages because network name resolution failed. Therefore this is **not a complete Flask integration pass**, a fresh JiWER parity pass, or a live-provider validation.
+**Scope and origin:** This repository presents and maintains an earlier ASR Evaluator Dashboard 1.6.2 application for a technical portfolio, including setup repairs, integration wiring, tests, and documentation. Historical archived materials are identified as such; see [source and migration context](docs/portfolio/MIGRATION.md). Provider names do not imply endorsement or an official company release.
 
-```bash
-# Verify preserved application source, allowing the separately distributed audio fixture
-python tools/verify_source.py
+**Privacy:** run locally, only process audio you are authorized to use, and keep `.env`, `config.local.json`, `data/` and any patient or company-private data out of Git. See [SECURITY.md](SECURITY.md). **No general reuse license has been granted** for the repository contents; third-party materials retain their terms.
 
-# Full original test suite: install dependencies and restore the original media fixture first
-python run_tests.py
+## Technical references
 
-# Original full-package check also requires the original sample MP3
-python verify_package.py
-```
-
-See [verification details](docs/portfolio/VERIFICATION.md) for exact scope and exclusions. Historical reports are retained as historical evidence, never relabeled as new tests.
-
-## Limits and safe use
-
-This is a **single-user local workstation application**, not a hosted multi-user service. It has no account system or distributed queue. Keep it on loopback; do not expose it to the public internet.
-
-A WER/CER score measures textual differences relative to the chosen reference. It does not establish semantic correctness, medical safety, SOAP-note quality, or a universal ranking of ASR providers. Reference quality, normalization policy, sample selection, and model-version provenance all matter.
-
-Local settings are plaintext. Keep `.env`, `config.local.json`, uploaded audio, provider responses, and private run history out of Git. See [security guidance](SECURITY.md).
-
-## Documentation
-
-- [Architecture and implementation contracts](docs/ARCHITECTURE.md)
-- [Actual function map](docs/FUNCTION_MAP.md)
-- [Normalization policy](docs/NORMALIZATION_POLICY.md)
-- [Dashboard 1.6.2 definitions](docs/DASHBOARD_1_6_2.md)
-- [Configuration and provider setup](docs/portfolio/CONFIGURATION.md)
-- [Data and provenance](docs/portfolio/DATA_AND_PROVENANCE.md)
-- [Migration and source preservation](docs/portfolio/MIGRATION.md)
-- [Verification evidence](docs/portfolio/VERIFICATION.md)
-- [Original primary technical sources](docs/SOURCES.md)
-
-Provider names identify integrations only; this repository does not imply endorsement or an official company release. No new project license has been selected as part of this migration; third-party code and media retain their own terms.
+[Architecture](docs/ARCHITECTURE.md) · [Provider configuration](docs/portfolio/CONFIGURATION.md) · [Data provenance](docs/portfolio/DATA_AND_PROVENANCE.md) · [Verification scope](docs/portfolio/VERIFICATION.md) · [Function map (historical)](docs/FUNCTION_MAP.md) · [Sources](docs/SOURCES.md)
