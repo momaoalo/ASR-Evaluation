@@ -1,57 +1,55 @@
-# Configuration
+# Configuration and first-run troubleshooting
 
-## Two independent modes
+## Two distinct workflows
 
-**Supplied transcripts:** local comparison of reference and candidate text. No API
-key is needed; importing text does not create a live ASR result.
+- **Supplied transcripts / saved example:** runs local WER/CER calculations on supplied texts; no provider requests or charges. The first historical example's ASR source is **unverified**, not HUMAIN. The public checkout does **not** include the original sample audio file.
+- **Live audio:** choose Upload or YouTube, add the matching reviewed Ground Truth, select one or both providers, and confirm consent. The selected services receive audio and may charge credits.
 
-**Live ASR:** configure your own credentials and media tools. The application sends
-a prepared audio file to a provider and records its returned transcript.
+## Enter API keys in the interface
 
-## Credential precedence in the original source
+Open **New evaluation → ASR models → Model connections**. Enter the provider keys for the run. HUMAIN also needs your account's **actual API endpoint**. The ElevenLabs URL is fixed by its adapter and displayed read-only.
 
-`Settings.credentials()` loads environment values (including `.env`), then nonempty
-values from `config.local.json`, then any nonempty API-key constants in `config.py`.
-Those constants are empty in the recovered package. Do not insert real keys into
-tracked source files. An already present nonempty local value can override an
-environment value, so check precedence when troubleshooting.
+No API keys are shipped with the repository. Keys entered in the interface are held only as necessary to process the running job and are not stored in result JSON or Git. **Do not** commit keys to tracked files, include them in screenshots, or share them in issues.
 
-The example `.env` is a template, not a working provider configuration. In particular,
-set `HUMAIN_API_URL` to your account's documented endpoint rather than leaving the
-example's empty value in a live configuration. A website or login URL is not an API
-endpoint. The adapter supports an account-provided Socket.IO path.
+You may still configure keys locally with `.env` or `config.local.json` if desired. `Settings.credentials()` reads environment values, then local JSON, then any nonempty constants in `config.py` (which are empty in the public source). In-run keys entered through the UI override those defaults for the selected job.
 
-The original HUMAIN language mapping is:
+## Supported providers and language modes
 
-| Language mode | SDK language | Model constant |
+HUMAIN's original SDK mapping:
+
+| UI language | SDK language | Model |
 |---|---|---|
 | Arabic | `Ar` | `BayanAr` |
 | English | `En` | `FastEn` |
 | Mixed | `ArEn` | `BayanArEn` |
 
-The original example mentions `HUMAIN_MODEL`, but the adapter chooses from this
-mapping; it does not read that environment variable as an override.
+The original adapter does not use `HUMAIN_MODEL` as a user override. ElevenLabs uses its Scribe v2 integration.
 
-ElevenLabs uses the configured API key and the request settings implemented in
-`services/elevenlabs_asr.py`. Record the actual model settings with each run. The
-historical bundled transcript labels do not prove which version originally produced
-them.
+## Python environment and media dependencies
 
-## External programs
+Run `SETUP_WINDOWS.bat` to create `.venv` and install the requirements, including `yt-dlp[default]` for YouTube EJS scripts. Launch with `START_WINDOWS.bat` or `.venv\Scripts\python.exe run_local.py`; this avoids conflicts with another global Python.
 
-- FFmpeg and FFprobe: required for audio inspection and preparation.
-- yt-dlp: required for the YouTube acquisition path.
-- A supported JavaScript runtime such as Deno: relevant to the installed yt-dlp setup.
+```powershell
+winget install -e --id Gyan.FFmpeg
+winget install -e --id DenoLand.Deno
+```
 
-These are not bundled by `requirements.txt`. Confirm that the programs can be found
-on `PATH`; `/api/health` checks presence, not permission to use a provider account.
+- **FFmpeg and FFprobe** are required to prepare all live audio.
+- **yt-dlp** runs from the same Python environment as the app; no separate global executable is needed.
+- **Deno 2.3+** is recommended for YouTube JavaScript challenges; some videos can still be restricted.
+- The app is single-user and loopback-only. Do not expose it to the public internet.
 
-## Running safely
+Check readiness (no paid calls):
 
-Use `python run_local.py`. Keep the loopback binding. No automatic retries should be
-assumed after a provider timeout: the provider may have accepted a request before
-the local deadline expired. Inspect account state before intentionally rerunning it.
+```powershell
+.\.venv\Scripts\python.exe diagnose.py
+.\.venv\Scripts\python.exe -m yt_dlp --version
+```
 
-The source and adapter versions are preserved from the original archive. Current
-account access, provider billing, and live endpoint compatibility were not verified
-by this migration.
+`/api/health` reports installed tools; it does **not** validate a provider's account access, live endpoint or available credits.
+
+## Troubleshooting
+
+Refer to [README](../../README.md#checks-and-troubleshooting) or [Arabic quick start](../../README_AR.md). Missing `waitress` means you used the wrong Python or skipped setup. If YouTube acquisition fails, try Upload and check FFmpeg, Deno and video access. The public Git checkout must not be validated against `verify_package.py`'s historical full-release checksums.
+
+No automatic retries should be assumed after a provider timeout: the service might already have processed a billable request. Live provider credentials, account authorization and billing remain untested in offline CI.
