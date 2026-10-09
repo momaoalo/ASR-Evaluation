@@ -39,8 +39,8 @@ def repair_page(problems: list[str], root: Path) -> str:
 <meta name="viewport" content="width=device-width,initial-scale=1"><body style="font:16px/1.7 Arial;margin:40px auto;padding:20px;max-width:760px;color:#24394a">
 <h1>Some application files are from different updates.</h1>
 <p>Your saved evaluations have not been deleted. The application stopped loading this page to avoid displaying incorrect or empty results.</p>
-<ul>{items}</ul><p>Close the running application, extract ASR_Evaluator_Dashboard_1_6_2.zip outside this project, run UPDATE_EXISTING.bat, and restart.</p>
+<ul>{items}</ul><p>Close the application. For a GitHub checkout, run git status then git pull --ff-only in the project directory, restart START_WINDOWS.bat and refresh the browser. Preserve personal data and resolve local Git changes before pulling.</p>
 <p><b>Build:</b> {UI_BUILD}<br><b>Project:</b> {escape(str(root.resolve()))}</p>
 <button onclick="location.reload()" hidden>Reload</button>
-<p lang="ar" dir="rtl">ملفات الواجهة غير متطابقة. أغلق التطبيق واستخرج الحزمة خارج المشروع ثم شغّل UPDATE_EXISTING.bat وأعد التشغيل. لم تُحذف نتائجك.</p>
+<p lang="ar" dir="rtl">ملفات الواجهة غير متطابقة. أغلق التطبيق ثم نفّذ git pull --ff-only من مجلد GitHub وأعد تشغيل START_WINDOWS.bat، بعد حفظ أي تعديلات محلية. لم تُحذف نتائجك.</p>
 </body></html>'''

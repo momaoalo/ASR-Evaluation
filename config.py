@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / '.env')
-VERSION = '1.6.1'
+VERSION = '1.6.2'
 SCHEMA_VERSION = 1
 
 # Legacy optional constants retained for backward compatibility.

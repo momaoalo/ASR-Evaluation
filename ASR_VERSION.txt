@@ -1,2 +1,3 @@
-ASR Evaluator Dashboard 1.6.2
-Complete synchronized application. UPDATE_EXISTING.bat preserves existing user data and keys.
+ASR Evaluation — Dashboard UI 1.6.2 (GitHub portfolio edition)
+Use README.md / README_AR.md for current setup and verification.
+Historical ZIP update scripts are retained only for legacy archived workspaces.

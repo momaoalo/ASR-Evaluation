@@ -31,7 +31,7 @@ class UIRecoveryTests(unittest.TestCase):
             problems=verify_ui_files(Path(d))
             self.assertTrue(problems)
             page=repair_page(problems,Path(d))
-            self.assertIn('ASR_Evaluator_Dashboard_1_6_2.zip',page)
+            self.assertIn('git pull --ff-only',page)
             self.assertIn('have not been deleted',page)
 
     def test_actual_template_supplies_all_required_ids(self):
@@ -49,12 +49,18 @@ class UIRecoveryTests(unittest.TestCase):
         self.assertIn(sample['case']['ground_truth'],html)
         self.assertIn('id="savedRunTitle"',html)
 
+    @unittest.skipUnless((BASE_DIR/'examples/doctor_clip.mp3').is_file(), 'Original sample audio is not redistributable in public Git checkout')
     def test_sample_audio_is_real_and_matches_reference_metadata(self):
         sample=json.loads((BASE_DIR/'examples/sample.json').read_text())
         audio=BASE_DIR/'examples/doctor_clip.mp3'
         self.assertEqual(hashlib.sha256(audio.read_bytes()).hexdigest(),sample['audio']['sha256'])
         self.assertTrue(sample['case']['ground_truth'].strip().endswith('شفاك الله.'))
         self.assertAlmostEqual(sample['audio']['duration'],104.352,places=2)
+
+    def test_supplied_inputs_do_not_claim_verified_models_by_default(self):
+        template=(BASE_DIR/'templates/_workspace.html').read_text()
+        self.assertIn('value="Model 1 · supplied (unverified)"',template)
+        self.assertIn('value="Model 2 · supplied (unverified)"',template)
 
     def test_key_material_is_not_in_ui(self):
         js=(BASE_DIR/'static/js/app.js').read_text()

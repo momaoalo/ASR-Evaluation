@@ -19,7 +19,7 @@
     const missing=expectedIds.filter(id=>!$(id));
     const templateBuild=document.querySelector('[data-workspace-build]')?.dataset.workspaceBuild;
     if (missing.length || templateBuild!==UI_BUILD || (!boot.offline && boot.ui_version!==UI_BUILD)) {
-        showUiFailure('Application files are from different updates. Run UPDATE_EXISTING.bat from the extracted 1.6.2 package, then restart the application. Missing: '+(missing.join(', ') || 'matching build version')+'. Saved results have not been removed.');
+        showUiFailure('Application files are from different updates. If this is a GitHub clone, run git pull --ff-only in the project folder, restart the application, and refresh the browser. Missing: '+(missing.join(', ') || 'matching build version')+'. Saved results have not been removed.');
         return;
     }
     window.addEventListener('unhandledrejection', e=>{

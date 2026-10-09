@@ -1,37 +1,31 @@
-ASR Evaluation — Windows / GitHub quick start
+ASR Evaluation — البداية السريعة (Windows)
 
-افتح PowerShell داخل Documents وليس C:\Windows\System32.
-لنسخة جديدة:
+1) ثبت Git وPython 3.12.
+2) افتح PowerShell داخل Documents:
+
   cd "$env:USERPROFILE\Documents"
   git clone https://github.com/momaoalo/ASR-Evaluation.git
   cd .\ASR-Evaluation
   .\SETUP_WINDOWS.bat
-  .\START_WINDOWS.bat
 
-لتحديث نسخة GitHub موجودة:
-  git pull --ff-only
-  .\SETUP_WINDOWS.bat
-  .\START_WINDOWS.bat
+3) لتجربة التسجيلات الصوتية الحقيقية، ثبّت FFmpeg وFFprobe وDeno محليًا:
 
-السكربت ينشئ .venv ويثبت المتطلبات بما فيها waitress وyt-dlp.
-تحتاج FFmpeg وFFprobe لتجهيز الصوت؛ وثبت Deno لمزيد من دعم YouTube:
-  winget install -e --id Gyan.FFmpeg
-  winget install -e --id DenoLand.Deno
-
-افتح PowerShell جديد بعد التثبيت:
-  ffmpeg -version
-  ffprobe -version
-  deno --version
-  .\.venv\Scripts\python.exe -m yt_dlp --version
-
-ثم افتح http://127.0.0.1:5000
-
-العينة العامة تحتوي نصوص مقارنة محفوظة فقط، وليست HUMAIN API حقيقية.
-للتقييم الحقيقي ارفع صوتك وأدخل Ground Truth ومفاتيح API من Model connections.
-البرنامج محلي؛ لا تنشر مفاتيحك أو تسجيلات خاصة.
-
-اقرأ README_AR.md للتفاصيل وحلول المشكلات.
-
-إذا winget معطل برمز 0x80073cfc، استخدم المثبت المحلي داخل المشروع:
   .\INSTALL_MEDIA_WINDOWS.bat
-هو يثبت FFmpeg وFFprobe وDeno في .tools ويضبط PATH أثناء تشغيل المشروع فقط.
+
+   يعمل هذا المثبت بدون winget أو صلاحيات مدير.
+
+4) شغّل التطبيق:
+
+  .\START_WINDOWS.bat
+
+افتح http://127.0.0.1:5000
+
+تجربة النصوص المحفوظة (View sample results) لا تستدعي API؛ ليست
+نتيجة HUMAIN حقيقية. للتقييم الفعلي، ارفع تسجيلًا مصرحًا لك باستخدامه،
+وأكد Ground Truth وأدخل مفاتيح HUMAIN / ElevenLabs في Model connections.
+
+التحديث من نسخة موجودة: افتح مجلد النسخة ونفّذ git pull --ff-only،
+ثم SETUP_WINDOWS.bat. لا تستخدم UPDATE_EXISTING.bat مع GitHub؛
+فهو مخصص لترقية أرشيف ZIP القديم.
+
+تفاصيل الأوامر والمشاكل: README_AR.md وdocs/WINDOWS_SETUP.md.

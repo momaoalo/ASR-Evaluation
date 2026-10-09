@@ -1,5 +1,7 @@
-# Additional convenience setup. Original requirements.txt is unchanged.
-# Supports the local UI and transcript scoring, without the optional HUMAIN SDK.
+# Minimal dependency subset for local text-only development.
+# This is NOT the full application setup; it deliberately excludes the HUMAIN SDK,
+# yt-dlp and its optional helpers. For the supported complete installation use
+# requirements.txt or SETUP_WINDOWS.bat instead.
 Flask==3.1.3
 requests>=2.32.4,<3
 python-dotenv>=1.1,<2
