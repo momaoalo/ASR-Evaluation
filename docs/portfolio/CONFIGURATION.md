@@ -29,12 +29,22 @@ The adapter selects one of those SDK constants based on language. Setting `HUMAI
 
 Run `SETUP_WINDOWS.bat` to create `.venv` and install the requirements, including `yt-dlp[default]` for YouTube EJS scripts. Launch with `START_WINDOWS.bat` or `.venv\Scripts\python.exe run_local.py`; this avoids conflicts with another global Python.
 
+**Recommended for Windows live audio (no WinGet needed):**
+
+```powershell
+.\INSTALL_MEDIA_WINDOWS.bat
+```
+
+This installs checksum-verified FFmpeg/FFprobe and Deno in the ignored project-local `.tools/` folder. `START_WINDOWS.bat` uses those executable paths without changing your global PATH.
+
+**Alternative, only if WinGet is working:**
+
 ```powershell
 winget install -e --id Gyan.FFmpeg
 winget install -e --id DenoLand.Deno
 ```
 
-- **FFmpeg and FFprobe** are required to prepare all live audio. If WinGet is broken, run `INSTALL_MEDIA_WINDOWS.bat`; this installs official checksum-verified FFmpeg/FFprobe and Deno in the ignored project-local `.tools/` folder. `START_WINDOWS.bat` adds that location to the process PATH.
+- **FFmpeg and FFprobe** are required to prepare all live audio; **Deno** is recommended for YouTube and is not required for text-only scoring. The portable installer can be skipped when scoring imported transcripts.
 - **yt-dlp** runs from the same Python environment as the app; no separate global executable is needed.
 - **Deno 2.3+** is recommended for YouTube JavaScript challenges; some videos can still be restricted.
 - The app is single-user and loopback-only. Do not expose it to the public internet.

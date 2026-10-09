@@ -2,6 +2,8 @@
 
 This describes actual source files, not a claim that external API accounts have been tested.
 
+For a navigable directory of current and archived documents, see the [documentation index](INDEX.md).
+
 ## Reading order
 
 1. `app.py:create_app()` owns the local web boundary and routes. Browser sends JSON or uploaded file bytes. Requests need the CSRF token supplied to the page. Provider keys never go into browser responses.

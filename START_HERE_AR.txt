@@ -8,7 +8,8 @@ ASR Evaluation — البداية السريعة (Windows)
   cd .\ASR-Evaluation
   .\SETUP_WINDOWS.bat
 
-3) لتجربة التسجيلات الصوتية الحقيقية، ثبّت FFmpeg وFFprobe وDeno محليًا:
+3) لتقييم الصوت ثبّت FFmpeg وFFprobe محليًا (ويُثبّت Deno اختياريًا لدعم YouTube).
+   لا تحتاج هذه الخطوة عند مقارنة النصوص الجاهزة فقط:
 
   .\INSTALL_MEDIA_WINDOWS.bat
 

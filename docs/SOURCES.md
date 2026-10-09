@@ -23,4 +23,4 @@ Provider documentation cross-checked on 9 October 2026 for the pinned adapters. 
 - Python Unicode: https://docs.python.org/3/library/unicodedata.html
 - Requests multipart files/timeouts: https://requests.readthedocs.io/en/latest/user/quickstart/
 
-No library source code or font files are redistributed here. Installation uses the listed package managers; each dependency retains its own license. The bundled audio was supplied by the user, not created by this application.
+No library source code or font files are redistributed here. Installation uses the listed package managers; each dependency retains its own license. The historical source-audio file is **not** redistributed in this public repository; its original metadata and text-only sample are documented separately in [data provenance](portfolio/DATA_AND_PROVENANCE.md).

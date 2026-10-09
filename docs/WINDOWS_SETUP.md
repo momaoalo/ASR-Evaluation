@@ -1,6 +1,6 @@
 # Windows setup and troubleshooting
 
-This guide targets **Windows 11 / PowerShell**. The main [README](../README.md) explains the evaluation approach; this page contains installation details.
+This guide targets **Windows 11 / PowerShell**. The main [README](../README.md) explains the evaluation approach; this page contains installation details. Browse all current and archived documentation using the [index](INDEX.md).
 
 ## Prerequisites
 

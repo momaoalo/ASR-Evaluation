@@ -32,17 +32,12 @@ cd "$env:USERPROFILE\Documents"
 git clone https://github.com/momaoalo/ASR-Evaluation.git
 cd .\ASR-Evaluation
 .\SETUP_WINDOWS.bat
-.\START_WINDOWS.bat
-```
-
-افتح <http://127.0.0.1:5000>. سكربت الإعداد ينشئ بيئة Python محلية `.venv`.
-
-إذا تبي تجربة صوت فعلية، ثبّت FFmpeg وFFprobe وDeno باستخدام مثبت المشروع الذي لا يعتمد على winget:
-
-```powershell
+# خطوة اختيارية لتقييم الصوت أو روابط YouTube:
 .\INSTALL_MEDIA_WINDOWS.bat
 .\START_WINDOWS.bat
 ```
+
+افتح <http://127.0.0.1:5000>. سكربت الإعداد ينشئ بيئة Python محلية `.venv`. **إذا بتقيم نصوص جاهزة فقط، تجاوز `INSTALL_MEDIA_WINDOWS.bat`.** لتقييم الصوت تحتاج FFmpeg وFFprobe؛ ويُثبّت السكربت Deno أيضًا لتحسين دعم روابط YouTube، بدون الاعتماد على winget.
 
 جميع تفاصيل التحديث، واستكشاف مشكلات `waitress` و`yt-dlp` و`winget`، وفحص التثبيت موجودة في **[الدليل التفصيلي](docs/WINDOWS_SETUP.md)**.
 
@@ -69,5 +64,7 @@ CER = عدد تعديلات الحروف / عدد حروف النص المرجع
 يوجد **اختبار تثبيت Windows باستخدام GitHub Actions**، وأحدث تنفيذ مؤكد لمجموعة الاختبارات على النسخة العامة شغّل **416 اختبارًا: 412 ناجحًا و4 متجاوزة بسبب غياب ملف صوت العينة الأصلي، دون إخفاقات** ([سجل التحقق](https://github.com/momaoalo/ASR-Evaluation/actions/runs/37874546133)). اختبارات الاتصال بالنماذج تستخدم محاكاة بدون استهلاك أرصدة حقيقية. **لم تثبت الاختبارات الآلية جودة HUMAIN أو ElevenLabs الفعلية أو نجاح حسابات API الخاصة بالزوار.** التفاصيل ونتائج الاختبارات التاريخية موثقة في [ملف التحقق](docs/portfolio/VERIFICATION.md).
 
 المشروع مخصص للتجربة التقنية المحلية، ولا ينبغي نشر مفاتيح API أو بيانات المرضى أو نتائج العملاء. راجع [سياسة الخصوصية والأمان](SECURITY.md) و[مصدر البيانات والنتائج](docs/portfolio/DATA_AND_PROVENANCE.md).
+
+**دليل الملفات والوثائق:** [فهرس المشروع](docs/INDEX.md).
 
 **لمزيد من تفاصيل التطبيق والكود:** [README الإنجليزي](README.md) · [المعمارية](docs/ARCHITECTURE.md) · [إعداد النماذج](docs/portfolio/CONFIGURATION.md).

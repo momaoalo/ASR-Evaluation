@@ -33,7 +33,7 @@ This project brings those steps into one local application. It is an **ASR evalu
 | ASR integrations | HUMAIN Voice via its Python SDK; ElevenLabs Scribe v2 via API |
 | Text-only analysis | Score imported or example transcripts **without** calling a provider |
 | Error analysis | Word Error Rate (WER), Character Error Rate (CER), word substitutions / deletions / insertions, and positional alignments |
-| Arabic-aware comparisons | Configurable text normalization and clearly separated **Cleaning / No cleaning** views |
+| Arabic-aware comparisons | Versioned Arabic normalization and explicit **Cleaning / No cleaning** scoring views |
 | Fairer comparisons | Shared successful test cases, per-case metrics, macro averages, corpus-weighted metrics; unsuccessful runs remain failures |
 | Traceability | Original transcripts, model settings, audio fingerprints, cached/live provenance, and persisted run outcomes |
 | Review and reports | Reference review/re-scoring, interactive saved runs, portable HTML, JSON, and CSV exports |
@@ -41,15 +41,15 @@ This project brings those steps into one local application. It is an **ASR evalu
 ## Evaluation workflow
 
 ```mermaid
-flowchart LR
-    A[Audio upload or YouTube] --> B[Inspect and prepare audio]
-    B --> C[HUMAIN or ElevenLabs API]
-    C --> E[Recorded candidate transcript]
-    D[Imported candidate transcript] --> E
-    R[Reviewed reference transcript] --> F[Apply declared scoring policy]
+flowchart TD
+    A[Audio upload or YouTube URL] --> B[Inspect, crop and prepare audio]
+    B --> C[Selected HUMAIN / ElevenLabs API]
+    C --> E[Live provider transcript]
+    D[Previously supplied transcript] --> F[Score using one documented policy]
     E --> F
-    F --> G[WER / CER + error alignment]
-    G --> H[Saved runs and comparison reports]
+    R[Reviewed Ground Truth] --> F
+    F --> G[WER and CER with error alignments]
+    G --> H[Saved evaluations and reports]
 ```
 
 The HUMAIN adapter uses the SDK's **FastTranscriptionClient**, intended for completed, latency-sensitive short audio units; it is not a generic long-meeting batch API. Upload/clip length is also restricted by application settings. Provider requests are **sequential**, not parallel. Imported transcripts follow a separate path and must **never** be interpreted as new API results. This distinction is displayed in the interface and saved provenance.
@@ -65,17 +65,12 @@ cd "$env:USERPROFILE\Documents"
 git clone https://github.com/momaoalo/ASR-Evaluation.git
 cd .\ASR-Evaluation
 .\SETUP_WINDOWS.bat
-.\START_WINDOWS.bat
-```
-
-The launcher uses a project-local `.venv`. Open **http://127.0.0.1:5000**. You do not need to activate Python manually.
-
-**For live audio**, install FFmpeg and FFprobe. The repository includes a portable installer that also sets up Deno for YouTube use **without WinGet**:
-
-```powershell
+# For actual audio uploads or YouTube URLs, run the optional media setup:
 .\INSTALL_MEDIA_WINDOWS.bat
 .\START_WINDOWS.bat
 ```
+
+The launcher uses a project-local `.venv`. Open **http://127.0.0.1:5000**. You do not need to activate Python manually. For **text-only scoring**, skip `INSTALL_MEDIA_WINDOWS.bat`. For **live audio**, FFmpeg/FFprobe are needed; the portable installer also adds Deno for more reliable YouTube acquisition, without relying on WinGet.
 
 If you have an existing clone, use `git pull --ff-only` followed by `SETUP_WINDOWS.bat`. For errors such as missing `waitress`, `yt-dlp`, FFmpeg, or broken WinGet (`0x80073cfc`), see the **[step-by-step Windows setup and troubleshooting guide](docs/WINDOWS_SETUP.md)**.
 
@@ -143,6 +138,10 @@ docs/ + verification/      Contracts and historical verification records
 **Scope and origin:** This repository presents and maintains an earlier ASR Evaluator Dashboard 1.6.2 application for a technical portfolio, including setup repairs, integration wiring, tests, and documentation. Historical archived materials are identified as such; see [source and migration context](docs/portfolio/MIGRATION.md). Provider names do not imply endorsement or an official company release.
 
 **Privacy:** run locally, only process audio you are authorized to use, and keep `.env`, `config.local.json`, `data/` and any patient or company-private data out of Git. See [SECURITY.md](SECURITY.md). **No general reuse license has been granted** for the repository contents; third-party materials retain their terms.
+
+## Documentation map
+
+For the current project, start with the [documentation index](docs/INDEX.md). It separates active engineering guides from historical Dashboard 1.6.x release records and explains the legacy files retained at the repository root.
 
 ## Technical references
 
