@@ -41,7 +41,7 @@
   "predictions": [
     {
       "key": "ai_transcriber",
-      "label": "ASR AI Transcriber · supplied",
+      "label": "Unverified ASR model · supplied",
       "text": "أهلا وسهلا بك تفضل لو سمحت لدي موعد عند الطبيب الطبيب في انتظارك تفضل شكرا لك مما تشكو أشعر بألم شديد في صدري وكذلك بضيق في التنفس وعندي سعال شديد منذ متى تشعر بهذه الأعراض منذ يومين حسنا استلق على السرير واكشف عن صدرك خذ نفسا عميقا ماذا بي يا طبيب سنجري بعض التحاليل صورة أشعة للصدر وبعد ساعه ظهرت نتيجه التحاليل والاشعه خيرا يا طبيب كيف النتيجة عندك التهاب في الصدر سأكتب لك وصفة طبية تأخذها من الصيدلية شكرا جزيلا لك يا طبيب شفاك الله",
       "format": "plain"
     },
@@ -52,5 +52,5 @@
       "format": "subtitles"
     }
   ],
-  "provenance": "These are previously supplied texts, NOT new API calls. AI Transcriber underlying model is unknown. ElevenLabs model version was not independently verified. No HUMAIN output is fabricated."
+  "provenance": "Previously supplied transcripts only, NOT live provider results. The first transcript's model identity is unknown and must not be attributed to HUMAIN. ElevenLabs attribution and model version have not been independently verified. No HUMAIN output is fabricated."
 }
