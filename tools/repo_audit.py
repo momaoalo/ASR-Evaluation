@@ -13,7 +13,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-TEXT_SUFFIXES = {'.py', '.md', '.txt', '.json', '.html', '.css', '.js',
+TEXT_SUFFIXES = {'.py', '.md', '.txt', '.json', '.html', '.css', '.js', '.csv',
                  '.ps1', '.bat', '.yml', '.yaml', '.svg', '.example', '.gitignore',
                  '.gitattributes'}
 BINARY_SUFFIXES = {'.jpg', '.jpeg', '.png', '.webp', '.gif', '.ico', '.mp3',
