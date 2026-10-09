@@ -1,11 +1,11 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-set "PYEXE=%LOCALAPPDATA%\Programs\Python\Python312-arm64\python.exe"
-if exist "%PYEXE%" goto chosen
-set "PYEXE=%LOCALAPPDATA%\Programs\Python\Python312\python.exe"
-if exist "%PYEXE%" goto chosen
-set "PYEXE=python"
-:chosen
-"%PYEXE%" run_tests.py
+if not exist ".venv\Scripts\python.exe" (
+  echo Run SETUP_WINDOWS.bat first.
+  pause
+  exit /b 1
+)
+".venv\Scripts\python.exe" run_tests.py
+if errorlevel 1 echo Some checks failed. Review the output above.
 pause
