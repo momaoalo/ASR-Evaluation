@@ -74,7 +74,9 @@
         <strong>ElevenLabs</strong><small style="display:block;margin:4px 0 10px">Scribe v2 speech-to-text.</small>
         <label for="elevenApiKey">API key</label>
         <input id="elevenApiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Paste ElevenLabs API key" style="width:100%;box-sizing:border-box">
-        <p class="field-note">Leave the key blank to use an existing local configuration.</p>
+        <label for="elevenApiEndpoint">API endpoint <span style="font-weight:400">(fixed)</span></label>
+        <input id="elevenApiEndpoint" type="url" readonly value="https://api.elevenlabs.io/v1/speech-to-text" aria-label="ElevenLabs API endpoint, read only" style="width:100%;box-sizing:border-box;opacity:.8;cursor:default">
+        <p class="field-note">Endpoint is predefined by the integration. Leave the key blank to use existing local configuration.</p>
       </div>
     </div>
     <p class="field-note" style="margin-top:12px">🔒 Credentials stay in local application memory during the run. Do not share screenshots showing keys.</p>
