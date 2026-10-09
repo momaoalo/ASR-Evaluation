@@ -625,6 +625,7 @@
                 // followSubmittedRun opens synchronous imported results as well.
                 return;
             }
+            if (state.source === 'sample' && !boot.sample_audio_present) throw new Error('The saved demo has no audio file in the public repository. Select Upload or YouTube for live ASR, or click View sample results for the text-only demo.');
             const models = [];
             if ($('selectHumain').checked)
                 models.push('humain');
@@ -824,7 +825,7 @@
         }
         // Bootstrap carries the pinned reference; health never gates loading saved runs.
         if (boot.sample) {
-            applySample(boot.sample); sourceTab('sample');
+            applySample(boot.sample); sourceTab(boot.sample_audio_present ? 'sample' : 'upload');
             setProfile(policyCatalog.cleaning_profile || state.sample.profile); $('language').value='ar';
         }
         const readiness=refreshHealth().catch(()=>{$('healthLabel').textContent='Readiness unavailable · UI 1.6.2';});
