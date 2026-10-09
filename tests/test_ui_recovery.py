@@ -23,7 +23,7 @@ class UIRecoveryTests(unittest.TestCase):
                 shutil.copytree(BASE_DIR/name,root/name)
             shutil.copy2(BASE_DIR/'ui_manifest.json',root/'ui_manifest.json')
             page=root/'templates/_workspace.html'
-            page.write_text(page.read_text(encoding='utf-8').replace('id="savedRunTitle"','id="oldRunTitle"'))
+            page.write_text(page.read_text(encoding='utf-8').replace('id="savedRunTitle"','id="oldRunTitle"'), encoding='utf-8')
             self.assertTrue(any('_workspace.html' in x for x in verify_ui_files(root)))
 
     def test_missing_manifest_explains_repair(self):

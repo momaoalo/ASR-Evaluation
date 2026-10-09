@@ -130,7 +130,7 @@ docs/ + verification/      Contracts and historical verification records
 <details>
 <summary><strong>What has actually been verified?</strong></summary>
 
-- A [Windows Python 3.12 onboarding CI workflow](.github/workflows/windows-setup-smoke.yml) installs the project, checks portable media tools and source/UI integrity, and exercises first-run flows with **mocked** provider responses.
+- A [Windows Python 3.12 onboarding CI workflow](.github/workflows/windows-setup-smoke.yml) installs the project, checks portable media tools and source/UI integrity, runs the **full available offline unit/integration suite as a required check**, and exercises first-run flows with **mocked** provider responses.
 - The first-run smoke tests verify that a supplied transcript can create saved scores and that a mocked API run is queued/saved without leaking a test credential.
 - A previous historical offline test run is documented separately in [verification evidence](docs/portfolio/VERIFICATION.md), with skipped tests and fixture requirements declared.
 - **Not verified by CI:** real paid provider credentials/endpoints, actual provider model accuracy, unrestricted YouTube downloads, or medical suitability.
