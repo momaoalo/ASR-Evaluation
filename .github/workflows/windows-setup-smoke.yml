@@ -29,6 +29,14 @@ jobs:
           [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path .\INSTALL_MEDIA_WINDOWS.ps1).Path, [ref]$tokens, [ref]$issues) | Out-Null
           if ($issues.Count -gt 0) { throw ($issues | Out-String) }
           Write-Host 'Portable FFmpeg/Deno installation script parses successfully.'
+      - name: Install portable media dependencies without WinGet
+        shell: pwsh
+        run: |
+          & .\INSTALL_MEDIA_WINDOWS.ps1
+          if ($LASTEXITCODE -ne 0) { throw 'Portable media installation failed.' }
+          & .\.tools\ffmpeg\ffmpeg.exe -version | Select-Object -First 1
+          & .\.tools\ffmpeg\ffprobe.exe -version | Select-Object -First 1
+          & .\.tools\deno\deno.exe --version | Select-Object -First 1
       - name: Check yt-dlp and backend imports
         shell: pwsh
         run: |
