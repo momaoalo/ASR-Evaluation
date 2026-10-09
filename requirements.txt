@@ -7,4 +7,7 @@ rapidfuzz>=3.9.7,<4
 waitress>=3.0,<4
 # Official HUMAIN SDK; ElevenLabs uses Requests directly.
 humain-voice==0.18.0
-# FFmpeg, FFprobe, yt-dlp and Deno are external programs, not installed here.
+# yt-dlp and its EJS helper are installed in this same Python environment.
+# Deno is recommended for YouTube's JavaScript challenges; install it separately.
+yt-dlp[default]>=2025.11.12
+# FFmpeg and FFprobe are OS executables; install separately for live audio.
