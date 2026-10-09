@@ -82,11 +82,11 @@ class AudioCaseListTests(unittest.TestCase):
         boot=json.loads(re.search(r'<script type="application/json" id="bootstrap">(.*?)</script>',html,re.S).group(1))
         self.assertEqual(len(boot['cases']),1);self.assertEqual(len(boot['summaries']['raw']['audio_cases']),1)
     def test_no_run_selector_in_html(self):
-        html=(BASE_DIR/'templates/_workspace.html').read_text()
+        html=(BASE_DIR/'templates/_workspace.html').read_text(encoding='utf-8')
         self.assertNotIn('id="runSelect"',html);self.assertNotIn('ACTIVE RUN',html)
         self.assertNotIn('id="modelFilter"',html);self.assertIn('id="page-run"',html)
     def test_overview_query_is_always_all(self):
-        js=(BASE_DIR/'static/js/app.js').read_text()
+        js=(BASE_DIR/'static/js/app.js').read_text(encoding='utf-8')
         self.assertIn("return {run: 'all', q:",js)
         self.assertIn('await openRun(open.dataset.openRun)',js)
     def test_job_headers_include_no_sensitive_input(self):
@@ -104,7 +104,7 @@ class AudioCaseListTests(unittest.TestCase):
         s=build_overview([c],[j]);self.assertEqual(len(s['audio_cases']),1)
         self.assertEqual(len(s['audio_cases'][0]['models']),2)
     def test_asset_cache_busting_in_template(self):
-        html=(BASE_DIR/'templates/index.html').read_text();self.assertEqual(html.count('v=asset_version'),3)
+        html=(BASE_DIR/'templates/index.html').read_text(encoding='utf-8');self.assertEqual(html.count('v=asset_version'),3)
 
 @unittest.skipUnless(importlib.util.find_spec('flask'),'Requires the installed Flask dependency')
 class AudioCaseRoutesTests(unittest.TestCase):

@@ -97,7 +97,12 @@ class ImportOldDataTests(unittest.TestCase):
         self.assertFalse(list((self.new/'data').rglob('*.json')))
         self.assertEqual((self.new/'app.py').read_text(),'# NEW CODE')
     def test_all_essentials_present_in_release(self):
-        for name in ['app.py','config.py','run_local.py','requirements.txt','import_old_data.py','verify_package.py','START_WINDOWS.bat','IMPORT_OLD_DATA.bat','examples/doctor_clip.mp3','examples/ground_truth.txt','templates/_workspace.html','static/js/app.js']:
+        for name in ['app.py','config.py','run_local.py','requirements.txt','import_old_data.py','verify_package.py','START_WINDOWS.bat','IMPORT_OLD_DATA.bat','examples/ground_truth.txt','templates/_workspace.html','static/js/app.js']:
             self.assertTrue((BASE_DIR/name).is_file(),name)
+        # The original MP3 is optional in this public source-only release.
+        audio = BASE_DIR/'examples/doctor_clip.mp3'
+        if audio.is_file():
+            metadata = json.loads((BASE_DIR/'examples/sample.json').read_text(encoding='utf-8'))
+            self.assertEqual(hashlib.sha256(audio.read_bytes()).hexdigest(), metadata['audio']['sha256'])
         self.assertEqual(UI_BUILD,'dashboard-1.6.2')
         self.assertEqual(verify_ui_files(BASE_DIR),[])

@@ -44,8 +44,10 @@ class UpdateTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.run_install()
     def test_failure_rolls_back_code(self):
         real=up.atomic_copy
+        calls=[0]
         def failing(src,dst):
-            if src==self.src/'templates/index.html':raise OSError('simulated disk failure')
+            calls[0]+=1
+            if calls[0]==2:raise OSError('simulated disk failure')
             return real(src,dst)
         with patch.object(up,'atomic_copy',side_effect=failing):
             with self.assertRaises(RuntimeError):self.run_install()

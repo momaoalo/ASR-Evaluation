@@ -20,17 +20,25 @@ from services.asr_common import build_model_result, ProviderError
 from services.elevenlabs_asr import transcribe_elevenlabs
 from services.humain_asr import transcribe_humain
 
+HAS_ORIGINAL_MP3 = (BASE_DIR / 'examples' / 'doctor_clip.mp3').is_file()
+
 class Base(unittest.TestCase):
     def setUp(self):
         self.temp=TemporaryDirectory();self.root=Path(self.temp.name);self.s=Settings(root=self.root)
         (self.root/'examples').mkdir()
-        for name in ('doctor_clip.mp3','sample.json'):shutil.copy(BASE_DIR/'examples'/name,self.root/'examples'/name)
+        shutil.copy(BASE_DIR/'examples'/'sample.json',self.root/'examples'/'sample.json')
+        if HAS_ORIGINAL_MP3:
+            shutil.copy(BASE_DIR/'examples'/'doctor_clip.mp3',self.root/'examples'/'doctor_clip.mp3')
+        else:
+            # Provider HTTP/SDK mock tests only need an existing file handle.
+            # Do not claim this placeholder is the original audio fixture.
+            (self.root/'examples'/'doctor_clip.mp3').write_bytes(b'NO_PUBLIC_AUDIO_FIXTURE')
         self.sample=read_json(self.root/'examples/sample.json')
     def tearDown(self):self.temp.cleanup()
     def case(self):return build_case(self.sample['case'],0,validate_profile())
 
 class MediaTests(Base):
-    @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'),'FFmpeg required')
+    @unittest.skipUnless(HAS_ORIGINAL_MP3 and shutil.which('ffmpeg') and shutil.which('ffprobe'),'Original audio fixture and FFmpeg required')
     def test_real_clip_crop(self):
         src=self.root/'examples/doctor_clip.mp3';before=file_hash(src)
         p,meta=prepare_audio(src,{'start':1,'end':3},self.s)
@@ -44,7 +52,7 @@ class MediaTests(Base):
         p=self.root/'bad.mp3';p.write_bytes(b'not sound')
         with self.assertRaises(ValueError):probe_audio(p)
 
-    @unittest.skipUnless(shutil.which('ffprobe'),'FFprobe required')
+    @unittest.skipUnless(HAS_ORIGINAL_MP3 and shutil.which('ffprobe'),'Original audio fixture and FFprobe required')
     def test_bad_crop(self):
         with self.assertRaises(ValueError):prepare_audio(self.root/'examples/doctor_clip.mp3',{'start':20,'end':2},self.s)
 
@@ -103,7 +111,7 @@ class JobTests(Base):
         restarted=JobManager(self.s,start_worker=False)
         self.assertEqual(restarted.get(j['job_id'])['status'],'interrupted');self.assertTrue(restarted.queue.empty())
 
-    @unittest.skipUnless(shutil.which('ffmpeg'),'FFmpeg required')
+    @unittest.skipUnless(HAS_ORIGINAL_MP3 and shutil.which('ffmpeg'),'Original audio fixture and FFmpeg required')
     @patch('pipeline.transcribe_elevenlabs')
     @patch('pipeline.transcribe_humain',side_effect=ProviderError('Mock provider failure'))
     def test_complete_pipeline_partial_and_cache(self, humain, eleven):

@@ -66,7 +66,7 @@ class SimpleCleaningTests(unittest.TestCase):
             with self.assertRaises(ValueError):validate_score_view(v)
 
     def test_request_keeps_display_mode(self):
-        item=json.loads((BASE_DIR/'examples/sample.json').read_text())['case']
+        item=json.loads((BASE_DIR/'examples/sample.json').read_text(encoding='utf-8'))['case']
         for mode in ['raw','normalized']:
             r=validate_request({'cases':[item],'models':['elevenlabs'],'consent':True,'score_view':mode},Settings())
             self.assertEqual(r['score_view'],mode)

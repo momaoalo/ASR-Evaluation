@@ -29,8 +29,14 @@ class WebTests(unittest.TestCase):
         report=self.client.get('/api/export/'+run);self.assertEqual(report.status_code,200)
         self.assertIn(b'Offline report',report.data);self.assertNotIn(b'xi-api-key=',report.data)
     def test_no_secret_echo(self):
-        self.client.post('/api/settings',headers=self.token,json={'elevenlabs_api_key':'never-display-this'})
-        response=self.client.get('/api/settings');self.assertNotIn(b'never-display-this',response.data)
+        sample = self.client.get('/api/sample').json
+        submitted = self.client.post('/api/evaluate', headers=self.token, json={
+            'cases': [sample['case']], 'models': ['elevenlabs'], 'consent': True,
+            'provider_credentials': {'elevenlabs_api_key': 'never-display-this'}})
+        self.assertEqual(submitted.status_code, 202, submitted.get_json())
+        jobs = self.client.get('/api/jobs')
+        self.assertEqual(jobs.status_code, 200)
+        self.assertNotIn(b'never-display-this', jobs.data)
     def test_unknown_path(self):self.assertEqual(self.client.get('/api/results/missing/missing').status_code,404)
     def test_missing_provider_key(self):
         sample=self.client.get('/api/sample').json

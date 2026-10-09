@@ -59,7 +59,7 @@ def export_overview_report(results, jobs, root, *, filters=None, score_view='nor
             'summaries': summaries, 'cases': cases, 'exported_at': now(), 'pair_keys': list(pair_keys), 'csv':{v:csv_results(summaries[v]) for v in summaries}}
     env = Environment(loader=FileSystemLoader(root / 'templates'), autoescape=select_autoescape(['html']))
     return env.get_template('report.html').render(
-        data=data, css=(root / 'static/css/app.css').read_text('utf-8'),
+        data=data, boot={'sample_audio_present': False}, css=(root / 'static/css/app.css').read_text('utf-8'),
         charts=(root / 'static/js/charts.js').read_text('utf-8'),
         script=(root / 'static/js/app.js').read_text('utf-8'))
 
