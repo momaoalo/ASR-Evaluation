@@ -15,6 +15,7 @@ class JobManager:
         self.queue = queue.Queue(maxsize=10)
         self.lock = threading.RLock()
         self.cancelled = set()
+        self._runtime_credentials = {}
         self.stop_event = threading.Event()
         (settings.data / 'jobs').mkdir(parents=True, exist_ok=True)
         # No auto-replay: a terminated process may have submitted billable requests.
@@ -64,7 +65,7 @@ class JobManager:
             write_json(self.path(job_id), job)
             return job
 
-    def create_job(self, request):
+    def create_job(self, request, credentials=None):
         with self.lock:
             if self.queue.full():
                 raise ValueError('The local job queue is full. Wait for a job to finish.')
@@ -73,6 +74,8 @@ class JobManager:
                    'status': 'queued', 'completed': 0, 'total': len(request.get('cases', request.get('source_results', []))),
                    'stage': 'Queued', 'current_case': ''}
             write_json(self.path(key), job)
+            if credentials:
+                self._runtime_credentials[key] = credentials.copy()
             self.queue.put_nowait(key)
             return self.public(job)
 
@@ -129,7 +132,14 @@ class JobManager:
                     save_result(self.settings, c); outcomes.append(c)
                     update(index+1, c['title'], 'Saved')
             else:
-                outcomes = run_batch(job, self.settings, update, lambda: job_id in self.cancelled)
+                creds = self._runtime_credentials.get(job_id, {})
+                # Credentials live only in memory while the queued job runs.
+                class PerJobSettings:
+                    def __getattr__(_, name):
+                        return getattr(self.settings, name)
+                    def credentials(_):
+                        return {**self.settings.credentials(), **creds}
+                outcomes = run_batch(job, PerJobSettings(), update, lambda: job_id in self.cancelled)
             n = sum(c['status'] == 'complete' for c in outcomes)
             any_success = any(m['status'] == 'success' for c in outcomes for m in c.get('models', []))
             status = 'complete' if n == job['total'] else ('partial' if any_success else 'failed')
@@ -138,6 +148,8 @@ class JobManager:
             self.patch(job_id, status=status, completed=len(outcomes), stage='Finished', finished_at=now())
         except Exception:
             self.patch(job_id, status='failed', stage='Job failed. Completed case checkpoints are retained.')
+        finally:
+            self._runtime_credentials.pop(job_id, None)
 
     def close(self):
         self.stop_event.set()
