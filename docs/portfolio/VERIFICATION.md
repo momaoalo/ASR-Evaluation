@@ -1,62 +1,78 @@
-# Migration verification — 4 October 2026
+# Verification: current repository vs. historical archive
 
-## Fresh checks performed
+Evidence should be read according to **when it was produced** and **what it
+actually tested**. A test against a mocked provider is not a successful paid
+request to that provider.
 
-- Recovered the complete `ASR_Evaluator_Dashboard_1_6_2.zip` archive.
-- Safely extracted it and ran the supplied `verify_package.py`: all original package
-  hashes matched before portfolio additions.
-- Parsed all **49 original Python files** successfully.
-- Checked original text files for common GitHub-token, private-key, AWS access-key,
-  and long literal API-secret patterns. No matching credential was detected. This
-  is a scoped pattern check, not proof of universal secrecy or a full security audit.
-- Executed the original offline test runner with the original media fixture present.
+## Current public GitHub checks — 9 October 2026
 
-| Test-run measure | Fresh observed result |
+The [Windows onboarding CI workflow](../../.github/workflows/windows-setup-smoke.yml)
+uses Windows with Python 3.12 and performs the following on a fresh checkout:
+
+1. Runs the actual `SETUP_WINDOWS.bat` setup into a project venv.
+2. Parses and exercises `INSTALL_MEDIA_WINDOWS.ps1`, including downloaded
+   FFmpeg/FFprobe/Deno checksums, without WinGet.
+3. Checks Python imports and yt-dlp availability.
+4. Runs focused offline tests for yt-dlp, UI integrity, first saved
+   transcript scoring and **mocked** live upload/provider processing.
+5. Verifies source/UI files and a local Flask `/api/build` response.
+
+The workflow is automatically executed on commits to `main`.
+For current status and exact tests, consult [GitHub Actions](../../.github/workflows/windows-setup-smoke.yml)
+or the repository's Actions tab; **do not treat this document as a continuously
+updated pass/fail counter**.
+
+The first-run API smoke exercises application plumbing using a fake key and
+mocked response. It does **not** authenticate a real HUMAIN/ElevenLabs account,
+confirm a live model ID/endpoint, or establish real-world ASR quality. A clean
+public clone also lacks the historical sample MP3.
+
+## Historical baseline — 4 October 2026
+
+Before later GitHub changes, the recovered full archive was inspected and the
+original offline runner reported:
+
+| Metric | Historical observation |
 |---|---:|
-| Discovered / run | 407 |
+| Tests run | 407 |
 | Passed | 372 |
 | Skipped | 35 |
 | Failures | 0 |
 | Errors | 0 |
 
-The detailed result is in `verification/migration/test_results.json`. Python version
-was 3.13.5. The original recommended setup remains Python 3.12.
+Source evidence: [migration/test_results.json](../../verification/migration/test_results.json).
 
-## Important limits
+This historical environment used Python 3.13.5, with Flask and JiWER unavailable.
+Tests requiring those packages were **skipped**; fallback scoring was used.
+This is **not a current full-suite result or a live-provider validation**.
+The original media fixture was present for that run, and should not be assumed
+present in a public clone.
 
-Flask and JiWER were unavailable in this execution environment. Attempting to
-install the pinned dependencies failed because network name resolution was
-unavailable. Tests designed to require Flask or official JiWER parity were skipped,
-not passed. Evaluation used the original RapidFuzz fallback.
+The historical synthetic-report screenshot and browser check are captured in
+[the migration record](../../verification/migration/browser_report.json).
 
-No paid ASR request was made. Provider account authorization, a fresh live-provider
-comparison, a full Flask UI/backend run, and Windows execution were not established
-by this test run. The full test run included the original local audio fixture;
-a source-only clone without that fixture cannot be assumed to have the same result.
+## Reproducing appropriately
 
-Standalone-report browser checks, when listed in the migration evidence, concern
-that exported report only. They are not a substitute for Flask integration tests.
+For today's public Git checkout:
 
-## Standalone report check
-
-The original HTML report renderer was exercised with the new synthetic English
-text fixture. The exported report was opened in Chromium using Playwright, and a
-real screenshot was captured. The synthetic-data label was present and no uncaught
-page JavaScript errors were observed. This check does not run Flask or provider APIs.
-Evidence: `verification/migration/browser_report.json` and
-`docs/assets/synthetic-dashboard.jpg`.
-
-## Reproduce locally
-
-Install the original requirements and external media tools, restore the original
-sample MP3, then run:
-
-```bash
-python tools/verify_source.py
-python verify_package.py
-python run_tests.py
+```powershell
+.\.venv\Scripts\python.exe verify_package.py
+.\.venv\Scripts\python.exe diagnose.py
+.\.venv\Scripts\python.exe -m unittest discover -s tests -p test_first_run_smoke.py -v
+.\.venv\Scripts\python.exe -m unittest discover -s tests -p test_youtube_setup.py -v
 ```
 
-`run_tests.py` writes your own fresh `verification/local_test_results.json`, including
-skip reasons. Inspect the counts rather than treating `OK (skipped=...)` as a complete
-pass. All existing `verification/dashboard_*` reports remain historical evidence.
+The full legacy `run_tests.py` suite may need the original separately
+distributed media fixture; don't represent missing-fixture errors as provider
+regressions or the focused CI checks as a full-suite pass.
+
+## Explicitly unverified
+
+- Paid live requests and account authorization at HUMAIN/ElevenLabs
+- Generalization of ASR scores to arbitrary audio, dialects, or medical tasks
+- Every public YouTube video's download availability
+- Public web deployment or multi-user security
+- Company approvals/endorsements and third-party content licenses
+
+See [data provenance](DATA_AND_PROVENANCE.md), [migration context](MIGRATION.md),
+and [security guidance](../../SECURITY.md).
